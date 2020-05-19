@@ -80,7 +80,7 @@ public class PlaceBasic {
 	   }
 
 	public static void printMain() {
-		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
+		System.out.println("\n\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1. My Page");
 		System.out.println("\t\t\t2. 명소 찾기");
 		System.out.println("\t\t\t0. 로그아웃");

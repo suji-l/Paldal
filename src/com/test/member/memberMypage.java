@@ -100,7 +100,6 @@ public class memberMypage {
 	}
 
 	public void myPageMenu() {
-
 		System.out.println("\n\t\t\t==========  My Page ==========");
 		System.out.println("\t\t\t1. 내 정보 보기");
 		System.out.println("\t\t\t2. 내 쿠폰 보기");

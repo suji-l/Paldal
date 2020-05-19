@@ -70,8 +70,8 @@ public class Main {
 							MemberBasic member = new MemberBasic(memberMain.getUserId());
 							while (true) {
 								// 로그인 성공화면
-								System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
-								System.out.printf("\n\t\t\tID : %s", member.getId());
+								System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+								System.out.printf("\t\t\tID : %s", member.getId());
 								PlaceBasic.printMain();
 								System.out.println("\t\t\t번호 입력 : ");
 								selectNum = scan.nextLine();
@@ -166,7 +166,6 @@ public class Main {
 							// 공지사항
 							else if (selectNum.equals("5")) {
 								admin.notice();
-
 							}
 							// 리뷰 관리
 							else if (selectNum.equals("6")) {
