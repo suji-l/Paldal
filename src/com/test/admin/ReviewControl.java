@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
@@ -32,6 +33,7 @@ public class ReviewControl {
 						Integer.parseInt(tmp[3].split("\\.")[2]), 
 						Integer.parseInt(tmp[3].split("\\.")[3]), 
 						Integer.parseInt(tmp[3].split("\\.")[4]));
+				
 				ReviewBasic review = new ReviewBasic
 						(tmp[0], tmp[1], tmp[2], reviewTime, tmp[4], tmp[5]);
 				list.add(review);

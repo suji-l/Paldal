@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.test.member.memberMain;
@@ -135,7 +136,7 @@ public class ReviewBasic {
 		
 		if(flag.equals("in")) {
 			try {
-				writer.write("\n" + memberMain.getUserId() + "■" + content + "■");
+				writer.write("\n"+ makeRandomNum() + memberMain.getUserId() + "■" + content + "■");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -168,6 +169,23 @@ public class ReviewBasic {
 		} else {
 			System.out.println("\t\t\t리뷰 작성을 마칩니다.");
 		}
+	}
+	private String makeRandomNum() {
+		Random rnd = new Random();
+		int length = 0;
+		String result = "";
+		for (int i = 0; i < 8; i++) {
+			int tmp = rnd.nextInt(12);
+			if (tmp % 3 == 0) {
+				result += rnd.nextInt(10);
+			} else if (tmp % 3 == 1) {
+				result += (char) (rnd.nextInt(26) + 65);
+
+			} else {
+				result += (char) (rnd.nextInt(26) + 97);
+			}
+		}
+		return result;
 	}
 
 	public void moreReview(PlaceBasic place) {
