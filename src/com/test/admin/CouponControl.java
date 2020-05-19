@@ -44,13 +44,13 @@ public class CouponControl {
 			reader.close();
 			
 		} catch (Exception e) {
-			System.out.println("경로를 확인해주세요.");
+			System.out.println("\t\t\t경로를 확인해주세요.");
 		}
 	}
 	
 	// 쿠폰 리스트 출력 메소드
 	public void printCouponList() {
-		System.out.println(list.size());
+		System.out.println("\t\t\t[번호]\t   [쿠폰 이름]\t\t[사용 기한]");
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println("\t\t\t" + (i + 1) + "\t" + list.get(i).getCouponName() + "\t"
 		+ String.format("%tF", list.get(i).getCouponDate()));
@@ -61,40 +61,51 @@ public class CouponControl {
 	public void insertCoupon() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println();
-		System.out.println("\t\t\t========== I  N  F   O =========");
-		System.out.print("\t\t\t쿠폰 이름 : ");
-		String couponName = scan.nextLine();
-		System.out.print("\t\t\t할인율(ex.50%) : ");
-		String couponDcString = scan.nextLine();
-		System.out.print("\t\t\t쿠폰 만료일(2020.01.01) : ");
-		String couponDateString = scan.nextLine();
-		System.out.print("\t\t\t쿠폰 적용 대상(서울-명소) : ");
-		String couponTarget = scan.nextLine();
-		System.out.print("\t\t\t쿠폰 설명 : ");
-		String couponDescription = scan.nextLine();
-		String couponNum = makeRandomNum();
-		try {
-			// 할인율 뒤에 % 제거
-			if(couponDcString.contains("%")) {
-				couponDcString = couponDcString.substring(0,couponDcString.length()-1);
-			}		
-			double couponDc = Integer.parseInt(couponDcString) / 100.0;
-			
-			Calendar couponDate = Calendar.getInstance();
-			couponDate.set(
-					Integer.parseInt(couponDateString.split("\\.")[0]), 
-					Integer.parseInt(couponDateString.split("\\.")[1]), 
-					Integer.parseInt(couponDateString.split("\\.")[2])); 
-			
-			CouponBasic coupon = new CouponBasic(couponNum, couponName, couponTarget, couponDescription, couponDc, couponDate);
-			writeDummy(coupon, true);
-			list.add(coupon);
-			System.out.println("\t\t\t쿠폰이 등록되었습니다. 계속하시려면 엔터를 입력해주세요.");
-			scan.nextLine();
-		} catch (Exception e) {
-			System.out.println("양식에 맞춰 다시 입력해주세요. 계속 하시려면 엔터를 입력해주세요.");
-			scan.nextLine();
+		while(true) {
+			System.out.println("\t\t\t========== I  N  F   O =========");
+			System.out.print("\t\t\t쿠폰 이름 : ");
+			String couponName = scan.nextLine();
+			System.out.print("\t\t\t할인율(ex.50%) : ");
+			String couponDcString = scan.nextLine();
+			System.out.print("\t\t\t쿠폰 만료일(2020.01.01) : ");
+			String couponDateString = scan.nextLine();
+			System.out.print("\t\t\t쿠폰 적용 대상(서울-명소) : ");
+			String couponTarget = scan.nextLine();
+			System.out.print("\t\t\t쿠폰 설명 : ");
+			String couponDescription = scan.nextLine();
+			String couponNum = makeRandomNum();
+			try {
+				// 할인율 뒤에 % 제거
+				if(couponDcString.contains("%")) {
+					couponDcString = couponDcString.substring(0,couponDcString.length()-1);
+				}		
+				double couponDc = Integer.parseInt(couponDcString) / 100.0;
+				
+				Calendar couponDate = Calendar.getInstance();
+				couponDate.set(
+						Integer.parseInt(couponDateString.split("\\.")[0]), 
+						Integer.parseInt(couponDateString.split("\\.")[1]), 
+						Integer.parseInt(couponDateString.split("\\.")[2])); 
+				
+				CouponBasic coupon = new CouponBasic(couponNum, couponName, couponTarget, couponDescription, couponDc, couponDate);
+				writeDummy(coupon, true);
+				list.add(coupon);
+				System.out.println("\t\t\t쿠폰이 등록되었습니다. 추가 등록을 원하시면 엔터를, 뒤로 가시려면 0을 입력해주세요.");
+				String input = scan.nextLine();
+				if(input.equals("0")) {
+					break;
+				} else if(input.equals("")) {
+					System.out.println("");
+				}
+			} catch (Exception e) {
+				System.out.println("\t\t\t양식에 맞춰 다시 입력해주세요. 뒤로 가시려면 0을, 재입력을 원하시면 엔터를 입력해주세요.");
+				String input = scan.nextLine();
+				if(input.equals("0")) {
+					break;
+				} 
+			}
 		}
+		
 		
 	}
 	
@@ -139,19 +150,23 @@ public class CouponControl {
 	// 쿠폰 상세 얻기
 	public void showDetail(String inputCouponNum) {
 		CouponBasic coupon = list.get(Integer.parseInt(inputCouponNum) -1 );
-		System.out.print("\t\t\t쿠폰 이름 : ");
+		System.out.println();
+		System.out.println("\t\t\t=================== I  N  F   O ==================");
+		System.out.println();
+		System.out.print("\t\t\t쿠폰 이름     : ");
 		System.out.println(coupon.getCouponName());
-		System.out.print("\t\t\t사용처 : ");
+		System.out.print("\t\t\t사용처        : ");
 		System.out.println(coupon.getCouponTarget());
-		System.out.print("\t\t\t할인율 : ");
+		System.out.print("\t\t\t할인율        : ");
 		System.out.println((int)(coupon.getCouponDc()*100) + "%");
-		System.out.print("\t\t\t쿠폰 설명 : ");
+		System.out.print("\t\t\t쿠폰 설명     : ");
 		System.out.println(coupon.getCouponDescription());
 		System.out.print("\t\t\t쿠폰 만료기간 : ");
 		System.out.println(String.format("%tF", coupon.getCouponDate()));
 		
 	}
 
+	// 쿠폰 삭제 메소드
 	public void deleteCoupon(String inputCouponNum) {
 		list.remove(Integer.parseInt(inputCouponNum) -1);
 		try {
@@ -163,5 +178,12 @@ public class CouponControl {
 			System.out.println();
 		}
 	}
+
+	public List<CouponBasic> getList() {
+		return list;
+	}
+	
+	
+	
 
 }

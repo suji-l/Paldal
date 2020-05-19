@@ -27,7 +27,7 @@ public class PlaceControl {
 			while ((line = reader.readLine()) != null) {
 				String[] tmp = line.split("■");
 				PlaceBasic place = new PlaceBasic(tmp[0], tmp[1], tmp[2], tmp[3], Double.parseDouble(tmp[4]),
-						Integer.parseInt(tmp[5]), Integer.parseInt(tmp[6]), tmp[7].equals("1") ? true : false,
+						Integer.parseInt(tmp[5].substring(0,tmp[5].indexOf("("))), Integer.parseInt(tmp[6]), tmp[7].equals("1") ? true : false,
 						Integer.parseInt(tmp[8]));
 				list.add(place);
 			}
@@ -65,7 +65,7 @@ public class PlaceControl {
 		String line = "";
 		// 정보 입력(다중 처리)
 		while (!(line = scan.nextLine()).equals("q")) {
-			description = description + line + " ";
+			description = description + line + "□";
 		}
 		description = description.trim();
 		
@@ -87,9 +87,21 @@ public class PlaceControl {
 		} catch (Exception e) { // 예외 발생시 메소드 재호출
 			System.out.println();
 			System.out.println("\t\t\t양식을 다시 확인해 주시기 바랍니다.");
-			System.out.println("\t\t\t다시 등록을 하시려면 엔터를 쳐주시기 바랍니다.");
-			scan.nextLine();
-			registPlace();
+			
+			
+			while(true) {
+				System.out.println("\t\t\t다시 등록을 하시려면 '엔터'를, 뒤로가기를 원하시면 '0'을 입력해 주시기 바랍니다.");
+				String input = scan.nextLine();
+				
+				if(input.equals("")) {
+					registPlace();
+				} else if(!input.equals("0")) {
+					System.out.println("\t\t\t올바른 숫자를 입력해주세요!");
+				} else {
+					break;
+				}
+			}
+			
 		}
 
 	}
@@ -178,7 +190,7 @@ public class PlaceControl {
 	}
 	
 	public void printPlaceList() {
-		System.out.println("\t\t\t명소 번호\t업소명\t주소\t카테고리 ");
+		System.out.println("\t\t\t[번호]   [업소명]\t\t[주소]\t\t\t[카테고리]");
 
 		for (int i = 0; i < list.size(); i++) {
 			String a = list.get(i).getCategory() == 1 ? "맛집" : list.get(i).getCategory() == 2 ? "놀거리" : "문화재";
@@ -195,6 +207,7 @@ public class PlaceControl {
 			writeDummy(list.get(0), false);
 			for (int i = 1; i < list.size(); i++) {
 				writeDummy(list.get(i), true);
+				break;
 			}
 		} catch (IOException e) {
 			System.out.println();

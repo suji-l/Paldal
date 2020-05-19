@@ -20,7 +20,7 @@ public class CouponDummy {
       String[] name1 = {"강원", "경기", "서울", "인천", "대전", "대구", "울산", "부산", "광주", "제주", "충청", "전라","경상" };
       String[] name2 = {"레져", "커피", "입장료", "음료", "상영관", "주차장", "케이크", "바이크", "오리배"};
       
-      String[] target1 = {"놀거리", "맛집", "문화재"};
+      String[] target1 = {"1", "2", "3"};
       
       String[] des1 = {"최소 25,000원 이상시 사용 가능합니다"
                      , "쿠폰사용 후 재발급 받으실 수 있습니다."
@@ -41,10 +41,11 @@ public class CouponDummy {
       //set을 iter한 것을 담아둘 문자열
       String result = "";
 
-      
+  
       // 선언한 Set의 사이즈가 ()개가 되기 전까지 while문을 돌림
       while(placeSet.size() < totalCount) {
-         temp = "■"+name1[(int)(Math.random() * name1.length)]
+    	 
+         temp = "■"+ name1[(int)(Math.random() * name1.length)]
                +"지역"
                +name2[(int)(Math.random() * name2.length)]
                      +"쿠폰";
@@ -74,9 +75,9 @@ public class CouponDummy {
          //난수 생성
          Random rnd = new Random();
          rand = Integer.toString(rnd.nextInt(90000000+10000000));
+         System.out.println(result);
          
-         
-         target = "■"+name1[(int)(Math.random() * name1.length)] + "-" 
+         target = "■"+ result.substring(1,3)+"-" 
                   +target1[(int)(Math.random() * target1.length)];
          
          des = "■" + des1[(int)(Math.random() * des1.length)]; 

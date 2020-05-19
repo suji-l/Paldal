@@ -28,7 +28,7 @@ public class ReviewControl {
 				Calendar reviewTime = Calendar.getInstance();
 				reviewTime.set(
 						Integer.parseInt(tmp[3].split("\\.")[0]), 
-						Integer.parseInt(tmp[3].split("\\.")[1]), 
+						Integer.parseInt(tmp[3].split("\\.")[1])-1, 
 						Integer.parseInt(tmp[3].split("\\.")[2]), 
 						Integer.parseInt(tmp[3].split("\\.")[3]), 
 						Integer.parseInt(tmp[3].split("\\.")[4]));
@@ -46,61 +46,71 @@ public class ReviewControl {
 		list.sort((o1, o2) -> (int)(o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
 		System.out.println("\t\t\t작성자\t명소\t댓글\t작성시간");
 		for (ReviewBasic reviewBasic : list) {
-			System.out.println("\t\t\t"+reviewBasic.getMemberName() + "\t" + reviewBasic.getPlaceName() + 
-					"\t" + reviewBasic.getReviewText() + "\t" + String.format("%tF %tT", reviewBasic.getReviewTime(), reviewBasic.getReviewTime()));
+			String memberName =String.format("%-15s", reviewBasic.getMemberName()); 
+			String placeName = reviewBasic.getPlaceName().length() > 10 ? String.format("%-10.10s..", reviewBasic.getPlaceName()) : String.format("%-11.11s", reviewBasic.getPlaceName());
+			String reviewTest =  String.format("%25s", reviewBasic.getReviewText());
+			String result = memberName + placeName + reviewTest + "\t\t" + String.format("%tF %tT", reviewBasic.getReviewTime(), reviewBasic.getReviewTime());
+			System.out.println("\t\t\t" + result);
 		}
 	}
 	
-	public void listByPlace() {
-		Scanner scan = new Scanner(System.in);
+	public void listByPlace(String inputPlaceNum) throws Exception {
 		PlaceControl place = new PlaceControl();
-		place.printPlaceList();
-		System.out.print("\t\t\t장소 번호 입력 : ");
-		String inputPlaceNum = scan.nextLine();
-		
+
 		PlaceBasic placeBasic = place.placeByNum(inputPlaceNum);
 
-		List<ReviewBasic> result = new ArrayList<ReviewBasic>();
-		
+		List<ReviewBasic> resultList = new ArrayList<ReviewBasic>();
+
 		for (int i = 0; i < list.size(); i++) {
-			if(list.get(i).getPlaceNum().equals(placeBasic.getPlaceNum())) {
-				result.add(list.get(i));
+			if (list.get(i).getPlaceNum().equals(placeBasic.getPlaceNum())) {
+				resultList.add(list.get(i));
 			}
 		}
-		result.sort((o1, o2) -> (int)(o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
-		System.out.println("\t\t\t작성자\t명소\t댓글\t작성시간");
-		for (ReviewBasic reviewBasic : result) {
-			System.out.println("\t\t\t"+reviewBasic.getMemberName() + "\t" + reviewBasic.getPlaceName() + 
-					"\t" + reviewBasic.getReviewText() + "\t" + String.format("%tF %tT", reviewBasic.getReviewTime(), reviewBasic.getReviewTime()));
+		if (resultList.size() == 0) {
+			System.out.println("\t\t\t댓글이 존재하지 않습니다.");
+		} else {
+			resultList.sort(
+					(o1, o2) -> (int) (o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
+			System.out.println("\t\t\t작성자\t명소\t댓글\t작성시간");
+			for (ReviewBasic reviewBasic : resultList) {
+				String memberName = String.format("%-15s", reviewBasic.getMemberName());
+				String placeName = reviewBasic.getPlaceName().length() > 10
+						? String.format("%-10.10s..", reviewBasic.getPlaceName())
+						: String.format("%-11.11s", reviewBasic.getPlaceName());
+				String reviewTest = String.format("%25s", reviewBasic.getReviewText());
+				String result = memberName + placeName + reviewTest + "\t\t"
+						+ String.format("%tF %tT", reviewBasic.getReviewTime(), reviewBasic.getReviewTime());
+				System.out.println("\t\t\t" + result);
+			}
+
 		}
-		
+
 	}
 	
-	public void listByMember() {
-		Scanner scan = new Scanner(System.in);
-		MemberControl member = new MemberControl();
-		member.printMemberList();
-		System.out.print("\t\t\t회원 번호 입력 : ");
-		String inputMemberNum = scan.nextLine();
+	public void listByMember(String inputMemberNum) {
+		MemberControl member= new MemberControl();
 		
 		MemberBasic memberBasic = member.memberByNum(inputMemberNum);
 		
-		List<ReviewBasic> result = new ArrayList<ReviewBasic>();
+		List<ReviewBasic> resultList = new ArrayList<ReviewBasic>();
 		for (int i = 0; i < list.size(); i++) {
 			if(list.get(i).getMemberName().equals(memberBasic.getId())) {
-				result.add(list.get(i));
+				resultList.add(list.get(i));
 			}
 		}
 		System.out.println();
-		if(result.size() == 0) {
+		if(resultList.size() == 0) {
 			System.out.println("\t\t\t회원이 작성한 댓글이 존재하지 않습니다.");
 		}
 		else {
-			result.sort((o1, o2) -> (int)(o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
+			resultList.sort((o1, o2) -> (int)(o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
 			System.out.println("\t\t\t작성자\t명소\t댓글\t작성시간");
-			for (ReviewBasic reviewBasic : result) {
-				System.out.println("\t\t\t"+reviewBasic.getMemberName() + "\t" + reviewBasic.getPlaceName() + 
-						"\t" + reviewBasic.getReviewText() + "\t" + String.format("%tF %tT", reviewBasic.getReviewTime(), reviewBasic.getReviewTime()));
+			for (ReviewBasic reviewBasic : resultList) {
+				String memberName =String.format("%-15s", reviewBasic.getMemberName()); 
+				String placeName = reviewBasic.getPlaceName().length() > 10 ? String.format("%-10.10s..", reviewBasic.getPlaceName()) : String.format("%-11.11s", reviewBasic.getPlaceName());
+				String reviewTest =  String.format("%25s", reviewBasic.getReviewText());
+				String result = memberName + placeName + reviewTest + "\t\t" + String.format("%tF %tT", reviewBasic.getReviewTime(), reviewBasic.getReviewTime());
+				System.out.println("\t\t\t" + result);
 			}
 		}
 		

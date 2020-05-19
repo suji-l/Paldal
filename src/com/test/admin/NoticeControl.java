@@ -79,9 +79,11 @@ public class NoticeControl {
 		writer.write(notice.getNoticeNum());
 		writer.write("■");
 		String insertDate = notice.getNoticeInsertDate().get(Calendar.YEAR) + "."
-				+ notice.getNoticeInsertDate().get(Calendar.MONDAY + 1) + "."
+				+ notice.getNoticeInsertDate().get(Calendar.MONTH) + "."
 				+ notice.getNoticeInsertDate().get(Calendar.DATE) + "."
-				+ notice.getNoticeInsertDate().get(Calendar.HOUR_OF_DAY);
+				+ notice.getNoticeInsertDate().get(Calendar.HOUR_OF_DAY) + "."
+				+notice.getNoticeInsertDate().get(Calendar.MINUTE)
+				;
 		writer.write(insertDate);
 		writer.write("■");
 		writer.write(notice.getNoticeTitle());
@@ -115,14 +117,16 @@ public class NoticeControl {
 	// 공지사항 출력
 	public void printNoticeList() {
 		System.out.println("\t\t\t공지 번호\t제목");
+		list.sort((o1, o2) -> (int)(o1.getNoticeInsertDate().getTimeInMillis() - o2.getNoticeInsertDate().getTimeInMillis()));
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println("\t\t\t"+(i+1) + "\t"+list.get(i).getNoticeTitle());
+			System.out.println("\t\t\t"+(i+1) + "\t"+list.get(i).getNoticeTitle() + "\t" + String.format("%tF", list.get(i).getNoticeInsertDate()));
 		}
 			
 	}
 
 	// 공지 삭제
 	public void deleteNotice(String noticeNum) {
+		
 		list.remove(Integer.parseInt(noticeNum)-1);
 		try {
 			writeDummy(list.get(0), false);

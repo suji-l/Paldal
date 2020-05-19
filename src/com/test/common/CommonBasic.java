@@ -76,8 +76,8 @@ public class CommonBasic {
 			if (!insertPw.equals(insertPwc))
 				throw new Exception("비밀번호가 일치하지 않습니다.");
 
-			if (insertAddress.length() < 0 || insertAddress.length() > 30)
-				throw new Exception("주소는 30자 까지 입력 가능합니다.");
+			if (insertAddress.length() <= 0 || insertAddress.length() > 30)
+				throw new Exception("주소를 올바르게 입력해주세요.");
 
 			Calendar c = Calendar.getInstance();
 			insertAge = insertAge.replace("-", "");
@@ -107,8 +107,8 @@ public class CommonBasic {
 				throw new Exception("14-65살 까지만 가입이 가능합니다.");
 
 			insertPNum.replace("-", "");
-			if (insertPNum.length() > 11)
-				throw new Exception("전화번호의 길이는 \"-\"포함하여 13자로 입력해주세요. ex) 010-1234-5678");
+			if (insertPNum.length() > 13)
+				throw new Exception("전화번호의 길이는 \"-\"포함하여 13자로 입력해주세요. ");				
 
 			if (!insertPNum.substring(0, 2).equals("01"))
 				throw new Exception("전화번호의 시작은 \"01*\"로 입력해주세요.");
@@ -121,61 +121,27 @@ public class CommonBasic {
 
 		} catch (Exception e) {
 			System.out.println();
-			System.out.println(e.getMessage());
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t"+e.getMessage());
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 
 			return false;
 		}
 		return true;
 	}
 
-	public static void noticeListMember() {
-
-		while (true) {
-			System.out.println();
-			System.out.println("\t\t\t========== 공지사항 ============");
-			System.out.println("\t\t\t➔번호\t 이름");
-			System.out.println("\t\t\t[1]\t문화의날 공지");
-			System.out.println("\t\t\t[2]\t특별 할인 지역 공지");
-			System.out.println("\t\t\t[3]\t이달의 추천 명소 공지");
-			System.out.println("\t\t\t=============================\n");
-			System.out.println("\t\t\t세부정보는 번호를 입력해주세요.");
-			System.out.println("\t\t\t번호 입력 : ");
-			System.out.println("\t\t\t0: 뒤로가기");
-
-			String selectNum = scan.nextLine();
-			if (selectNum.equals("1")) {
-				System.out.println("1번 내용 출력");
-				System.out.println("계속 하시려면 엔터를 입력해주세요.");
-				scan.nextLine();
-			} else if (selectNum.equals("2")) {
-				System.out.println("2번 내용 출력");
-				System.out.println("계속 하시려면 엔터를 입력해주세요.");
-				scan.nextLine();
-			} else if (selectNum.equals("3")) {
-				System.out.println("3번 내용 출력");
-				System.out.println("계속 하시려면 엔터를 입력해주세요.");
-				scan.nextLine();
-			} else if (selectNum.equals("0")) {
-				System.out.println("초기 화면으로 돌아갑니다.");
-				System.out.println("계속 하시려면 엔터를 입력해주세요.");
-				scan.nextLine();
-				break;
-			}
-		}
-	}
-
 	public static void printMain() {
 		System.out.println();
 		System.out.println("\n\t\t\t    WELCOME TO PALDAL PLACE     \n");
 		System.out.println("\t\t\t         ლ(๑╹ω╹๑ )ლ                  ლ(๑╹ω╹๑ )ლ\n");
-		System.out.println("\t\t\t==============================");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓 M A I N 〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1.회원 사용");
 		System.out.println("\t\t\t2.비회원 사용");
 		System.out.println("\t\t\t3.회원가입 ");
 		System.out.println("\t\t\t4.관리자 모드");
 		System.out.println("\t\t\t5.공지사항 보기");
 		System.out.println("\t\t\t6.프로그램 종료");
-		System.out.println("\t\t\t==============================\n");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 
 	}
 

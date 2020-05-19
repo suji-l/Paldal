@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,14 +20,17 @@ import com.test.dummy.dummyMain;
 import com.test.member.MemberBasic;
 import com.test.member.memberMain;
 import com.test.member.memberMypage;
+import com.test.notice.NoticeNewObject;
 import com.test.place.ChoiceLocalData;
 import com.test.place.PlaceBasic;
+import com.test.statistics.StatisticsBasic;
 
 public class Main {
 	public static boolean loginStatus = false;
 	static boolean flag = true;
 	static Scanner scan = new Scanner(System.in);
 	static String path = "resource\\";
+
 	public static void main(String[] args) throws Exception {
 		// 더미데이터
 //      dummyMain.createDummy();
@@ -36,12 +40,12 @@ public class Main {
 		List<String> dummyDataPlace = new ArrayList<String>();
 
 		// 변수
+//		boolean flag = false;
 		boolean flag = true;
 		while (flag) {
 
 			// main 화면 출력
 			CommonBasic.printMain();
-
 			// 사용자에게 번호를 입력받을 scanner 선언
 			System.out.print("\t\t\t번호 입력 : ");
 			String selectNum = scan.nextLine();
@@ -51,10 +55,11 @@ public class Main {
 				while (true) {
 					// 로그인
 
-					System.out.println("\n\t\t\t=========== 로 그 인 ===========");
+					System.out.println("\n\t\t\t〓〓〓〓〓〓〓〓〓〓 L O G I N 〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t1. 로그인");
 					System.out.println("\t\t\t0. 뒤로 가기");
-					System.out.println("\t\t\t==============================\n");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
+					System.out.println("\t\t\t번호 입력 : ");
 					selectNum = scan.nextLine();
 					if (selectNum.equals("1")) {
 						boolean loginflag = memberMain.login(dummyDataMember); // 매개변수에 더미데이터 넣어주기
@@ -65,6 +70,7 @@ public class Main {
 							MemberBasic member = new MemberBasic(memberMain.getUserId());
 							while (true) {
 								// 로그인 성공화면
+								System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 								System.out.printf("\n\t\t\tID : %s", member.getId());
 								PlaceBasic.printMain();
 								System.out.println("\t\t\t번호 입력 : ");
@@ -120,7 +126,7 @@ public class Main {
 						Admin admin = new Admin();
 
 						while (true) {
-							
+
 							// 관리자 로그인 성공
 							System.out.println("\t\t\t========== M  E  N   U =========");
 							System.out.println("\t\t\t1: 명소 등록/수정/삭제");
@@ -132,7 +138,7 @@ public class Main {
 							System.out.println("\t\t\t7: 통계 보기");
 							System.out.println("\t\t\t0: 로그아웃");
 							System.out.println("\t\t\t================================");
-							System.out.println("\t\t\t번호 입력 : ");
+							System.out.print("\t\t\t번호 입력 : ");
 							if (!scan.hasNext()) {
 								selectNum = scan.nextLine();
 							}
@@ -140,155 +146,36 @@ public class Main {
 
 							// 명소 등록 / 수정 / 삭제
 							if (selectNum.equals("1")) {
-								System.out.println("\t\t\t========== M  E  N   U =========");
-								System.out.println("\t\t\t1: 명소 등록");
-								System.out.println("\t\t\t2: 명소 수정");
-								System.out.println("\t\t\t3: 명소 삭제");
-								System.out.println("\t\t\t번호 입력 : ");
-								String insertPlaceControl = scan.nextLine();
-								PlaceControl placeControl = new PlaceControl();
-								if (insertPlaceControl.equals("1")) {
-									placeControl.registPlace();
-								} else if(insertPlaceControl.equals("2")) {
-									System.out.println("\t\t\t========== L  I  S   T =========");
-									// 명소 리스트 출력
-									placeControl.printPlaceList();
-									System.out.println("\t\t\t수정할 명소의 번호를 선택해주세요.");
-									String placeNum = scan.nextLine();
-									System.out.println("수정할 내용을 입력해주세요.");
-									// 명소 삭제 후 재등록하는 작업
-									placeControl.deletePlace(placeNum);
-									placeControl.registPlace();
-									scan.nextLine();
-								} else if(insertPlaceControl.equals("3")) {
-									System.out.println("\t\t\t========== L  I  S   T =========");
-									// 명소 리스트 출력
-									placeControl.printPlaceList();
-									System.out.println("\t\t\t삭제할 명소의 번호를 선택해주세요.");
-									String placeNum = scan.nextLine();
-									placeControl.deletePlace(placeNum);
-									System.out.println("\t\t\t명소가 삭제되었습니다. 계속하시려면 엔터를 입력해주세요.");
-									scan.nextLine();
-								}
+								admin.place();
 							}
 							// 회원 리스트
 							else if (selectNum.equals("2")) {
-								MemberControl memberControl = new MemberControl();
-								memberControl.printMemberList();
-								System.out.print("\t\t\t자세히 보고 싶은 회원의 번호를 입력해주세요 : ");
-								String memberNum = scan.nextLine();
-								try {
-									memberControl.showDetail(memberNum);
-									System.out.println("\t\t\t계속 하시려면 엔터를 입력해주세요.");
-									scan.nextLine();
-								} catch (Exception e) {
-									System.out.println("\t\t\t회원 번호를 정확하게 입력해주세요.");
-								}
+								admin.member();
+
 							}
 							// 블랙 리스트
 							else if (selectNum.equals("3")) {
-								BlackList blackList = new BlackList();
-								blackList.showBlackList();
-								System.out.println("\t\t\t목록을 출력하였습니다. 계속하시려면 엔터를 입력해주세요.");
-								scan.nextLine();
-								
+								admin.blackList();
+
 							}
 							// 쿠폰 관리
 							else if (selectNum.equals("4")) {
-								CouponControl coupon = new CouponControl();
-								System.out.println("\t\t\t========== M  E  N   U =========");
-								System.out.println("\t\t\t1. 쿠폰 목록 조회");
-								System.out.println("\t\t\t2. 쿠폰 발급");
-								System.out.println("\t\t\t3. 쿠폰 삭제");
-								System.out.println("\t\t\t번호 입력 : ");
-								String insertCouponControl = scan.nextLine();
-								if(insertCouponControl.equals("1")) {	
-									System.out.println("\t\t\t========== L  I  S   T =========");
-									coupon.printCouponList();
-									System.out.println("\t\t\t자세히 볼 쿠폰 번호를 입력해주세요. 뒤로 가실 고객께서는 엔터만 입력해주세요.");
-									String inputCouponNum = scan.nextLine();
-									if(!inputCouponNum.equals("")) {
-										coupon.showDetail(inputCouponNum);
-										System.out.println();
-										System.out.println("\t\t\t계속하시려면 엔터를 입력해주시기 바랍니다.");
-										scan.nextLine();
-									}
-								} else if(insertCouponControl.equals("2")) {
-									coupon.insertCoupon();
-									
-								} else if(insertCouponControl.equals("3")) {
-									System.out.println("\t\t\t========== L  I  S   T =========");
-									coupon.printCouponList();
-									System.out.println("\t\t\t삭제할 쿠폰 번호를 입력해주세요.");
-									String inputCouponNum = scan.nextLine();
-									coupon.deleteCoupon(inputCouponNum);
-									System.out.println("\t\t\t쿠폰이 삭제되었습니다. 계속하시려면 엔터를 입력해주세요");
-									scan.nextLine();
-									
-								}
-								
+								admin.coupon();
+
 							}
 							// 공지사항
 							else if (selectNum.equals("5")) {
-								System.out.println("\t\t\t========== M  E  N   U =========");
-								System.out.println("\t\t\t1.공지사항 추가");
-								System.out.println("\t\t\t2.공지사항 수정");
-								System.out.println("\t\t\t3.공지사항 삭제");
-								System.out.print("\t\t\t번호 입력 : ");
-								String insertNoticeControl = scan.nextLine();
-								NoticeControl noticeControl = new NoticeControl();
-								if(insertNoticeControl.equals("1")) {
-									noticeControl.insertNotice();
-								} else if(insertNoticeControl.equals("2")) {
-									noticeControl.printNoticeList();
-									System.out.println("\t\t\t수정할 공지 번호를 입력해주세요.");
-									String noticeNum = scan.nextLine();
-									noticeControl.deleteNotice(noticeNum);
-									System.out.println("\t\t\t수정할 내용을 입력해주세요.");
-									noticeControl.insertNotice();
-									scan.nextLine();
-								} else if(insertNoticeControl.equals("3")) {
-									noticeControl.printNoticeList();
-									System.out.println("\t\t\t삭제할 공지 번호를 입력해주세요.");
-									String noticeNum = scan.nextLine();
-									noticeControl.deleteNotice(noticeNum);
-									System.out.println("\t\t\t공지가 삭제되었습니다. 계속하시려면 엔터를 입력해주세요.");
-									scan.nextLine();
-								}
-								
+								admin.notice();
+
 							}
 							// 리뷰 관리
 							else if (selectNum.equals("6")) {
-								ReviewControl review = new ReviewControl();
-								
-								System.out.println("\t\t\t========== M  E  N   U =========");
-								System.out.println("\t\t\t1.모든 리뷰 보기");
-								System.out.println("\t\t\t2.장소별 리뷰 보기");
-								System.out.println("\t\t\t3.작성자별 리뷰 보기");
-								System.out.print("\t\t\t입력 : ");
-								String reviewInput = scan.nextLine();
-								if(reviewInput.equals("1")) {
-									review.listAllReview();
-									System.out.println();
-									System.out.println("\t\t\t날짜순으로 리뷰를 출력하였습니다. 계속하시려면 엔터를 입력해주세요.");
-									scan.nextLine();
-								} else if(reviewInput.equals("2")) {
-									review.listByPlace();
-									System.out.println();
-									System.out.println("\t\t\t장소별 리뷰를 출력하였습니다. 계속하시려면 엔터를 입력해주세요.");
-									scan.nextLine();
-								} else if(reviewInput.equals("3")) {
-									review.listByMember();
-									System.out.println();
-									System.out.println("\t\t\t작성자별 리뷰를 출력하였습니다. 계속하시려면 엔터를 입력해주세요.");
-									scan.nextLine();
-								}
+								admin.review();
 							}
 							// 통계
 							else if (selectNum.equals("7")) {
-								System.out.println("통계 메소드");
-							} 
-							else if (selectNum.equals("0")) {
+								admin.Statistics();
+							} else if (selectNum.equals("0")) {
 								break;
 							}
 						}
@@ -308,7 +195,7 @@ public class Main {
 			// 공지사항
 			else if (selectNum.equals("5")) {
 				// 공지사항 리스트 출력
-				CommonBasic.noticeListMember();
+				NoticeNewObject.notice();
 			}
 			// 종료
 			else if (selectNum.equals("6")) {
@@ -326,14 +213,15 @@ public class Main {
 	public static ArrayList<MemberBasic> loadMember(String path) throws Exception {
 
 		ArrayList<MemberBasic> list = new ArrayList<MemberBasic>();
-		System.out.println(path);
 		File file = new File(path);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		String line = "";
 		while ((line = reader.readLine()) != null) {
 			String[] tmp = line.split("■");
 			list.add(new MemberBasic(tmp[0], tmp[1], tmp[2], tmp[3], Integer.parseInt(tmp[4]), tmp[5], tmp[6], tmp[7],
-					0, ""));
+					Integer.parseInt(tmp[8]), ""));
+
+			// 블랙리스트 카운트, 쿠폰번호 왜 이렇게 넣었는지
 		}
 
 		return list;

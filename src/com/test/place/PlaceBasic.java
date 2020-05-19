@@ -1,9 +1,15 @@
 package com.test.place;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class PlaceBasic {
 
@@ -25,22 +31,60 @@ public class PlaceBasic {
 	private int price; // 가격
 
 	public static void hotPlaceList() {
-		// 이 부분은 예시로 해놓았습니다. String 받아와서 String.format 혹은 printf로 출력해주시면 됩니다.
-		String[] hotList = new String[] { "구스토타코", "서울특별시 마포구", "4.8", "맛집" };
-		System.out.println("\n\t\t\t                    🔥  오늘의 HOT 🔥");
-		System.out.println("\t\t\t");
-		System.out.println("\t\t 👉   순위        이름                       위치              별점       카테고리 ");
-		System.out.println("\t\t    1    망원 한강공원     서울특별시 마포구      4.8       문화재");
-		System.out.printf("\t\t    2     %s        %s      %s       %s", hotList[0], hotList[1], hotList[2],
-				hotList[3]);
-	}
+	      // key: 체류시간, value: 장소 데이터
+	      TreeMap<Double, String[]> placeDataMap = new TreeMap<Double, String[]>();
+	      // 장소 데이터 저장하는 임시 리스트
+	      ArrayList<String[]> placeDataList = new ArrayList<String[]>();
+
+	      BufferedReader reader = null;
+
+	      try {
+	         reader = new BufferedReader(new FileReader(new File("resource\\Place.dat")));
+	      } catch (FileNotFoundException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      String line = "";
+	      try {
+	         // 파일 탐색
+	         while ((line = reader.readLine()) != null) {
+	            // 구분자 기준으로 데이터 추출
+	            String[] temp = line.split("■");
+	            // Map의 key에 체류시간을 할당, value에 데이터 리스트 할당
+	            placeDataMap.put(Double.parseDouble(temp[4]), temp);
+	         }
+	      } catch (IOException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+
+	      // placeDataMap 돌기 위한 iterator 선언
+	      Iterator<Double> iter = placeDataMap.keySet().iterator();
+
+	      // keyset을 돌며 장소 데이터를 저장하는 리스트에 넣어줌
+	      while (iter.hasNext()) {
+	         placeDataList.add(placeDataMap.get(iter.next()));
+	      }
+	      System.out.println("\n\t\t\t                    🔥  오늘의 HOT 🔥");
+	      System.out.println("\t\t\t");
+	      System.out.println("\t\t 👉   순위\t이름\t\t위치\t\t별점\t카테고리 ");
+	      // 뒤에서부터 5개까지의 데이터를 출력, 뒤에서부터 도는 이유는 TreeMap의 key는 오름차순이기 때문에 뒤에서부터 돌아야 체류시간 높은
+	      // 순
+	      for (int i = placeDataList.size() - 1, j = 1; i >= 0 ; i--, j++) {
+	         System.out.printf("\t\t    %d\t%s\t%s\t%s\t%s\n", 
+	               j, placeDataList.get(i)[1],placeDataList.get(i)[3], placeDataList.get(i)[4],
+	               placeDataList.get(i)[6].equals("1") ? "문화재" : placeDataList.get(i)[6].equals("2") ? "맛집" : "놀거리");
+
+	      }
+
+	   }
 
 	public static void printMain() {
-		System.out.println("\n\t\t\t==============================");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 		System.out.println("\t\t\t1. My Page");
 		System.out.println("\t\t\t2. 명소 찾기");
 		System.out.println("\t\t\t0. 로그아웃");
-		System.out.println("\t\t\t==============================\n");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 	}
 
 	public static void findPlace(boolean loginStatus) {
@@ -54,10 +98,10 @@ public class PlaceBasic {
 		boolean placeFlag = true;
 		while (placeFlag) {
 			placeSelectMain placeMain = new placeSelectMain();
-			System.out.println("\n\t\t\t==============================");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 			System.out.println("\t\t\t1. 지역선택 [ 특별시 & 도 ]");
 			System.out.println("\t\t\t0. 뒤로가기");
-			System.out.println("\t\t\t==============================\n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 			System.out.println("\t\t\t번호 입력:");
 			
 			selectNum = scan.nextLine();
@@ -78,12 +122,12 @@ public class PlaceBasic {
 						getListOfLocal.weather();
 						
 						// 카테고리 출력
-						System.out.println("\n\t\t\t=========== 카테고리 ===========");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓 카테고리 〓〓〓〓〓〓〓〓\n");
 						System.out.println("\t\t\t1. 문화재");
 						System.out.println("\t\t\t2. 맛집");
 						System.out.println("\t\t\t3. 놀거리");
 						System.out.println("\t\t\t0. 뒤로가기");
-						System.out.println("\t\t\t==============================\n");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
 						System.out.println("\t\t\t번호 입력:");
 						
 						// 카테고리 입력받음
@@ -95,14 +139,21 @@ public class PlaceBasic {
 						// 사용자가 선택한 지역 & 해당되는 카테고리의 명소 리스트 출력
 						List<PlaceBasic> allPlaceThatSelectedbyUser = ChoiceLocalData.filterArea(totalPlace.replaceAll(" ", ""),categoryNum);
 						// allPlaceThatSelectedbyUser에는 Place객체가 들어가있는 List
-						getListOfLocal.getListOfLocal(allPlaceThatSelectedbyUser,totalPlace);
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓 정렬 순서 〓〓〓〓〓〓〓〓\n");
+						System.out.println("\t\t\t1.가나다순");
+						System.out.println("\t\t\t2.인기순");
+						System.out.println("\t\t\t0. 뒤로가기");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
+						System.out.println("\t\t\t번호 입력:");
+						String sortNum = scan.nextLine();
+						getListOfLocal.getListOfLocal(allPlaceThatSelectedbyUser,totalPlace,sortNum);
 					}
 
 				}
 			}
 			// 뒤로가기
 			else if (selectNum.equals("0")) {
-				System.out.println("\n초기 화면으로 돌아갑니다.\n");
+				System.out.println("\n\t\t\t ☝ 초기 화면으로 돌아갑니다.\n");
 				placeFlag = false;
 			}
 		}

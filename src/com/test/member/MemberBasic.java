@@ -17,14 +17,13 @@ public class MemberBasic {
 	private String pw; // 회원 비밀번호
 	private static int age; // 회원 나이
 	private String address; // 회원 주소
-	private String pnum; // 회원 전화번호
+	private static String pnum; // 회원 전화번호
 	private String gender; // 회원 성별
 	private int blackListCount; // 신고 횟수
 	private String[] coupon; // 쿠폰 리스트
-	
+
 	static Scanner scan = new Scanner(System.in);
 	// 로그인 메소드
-
 
 	public static void signUp(ArrayList<MemberBasic> dummyDataMember) throws Exception {
 		Scanner scan = new Scanner(System.in);
@@ -38,7 +37,7 @@ public class MemberBasic {
 
 				// 회원가입 입력
 				System.out.println("\t\t\t==============================");
-				System.out.println("\t\t\t\t\t\t정보입력");
+				System.out.println("\t\t\t\t정보를 입력해 주세요");
 				System.out.println("\t\t\t==============================");
 				System.out.println();
 				System.out.println("\t\t\t이름은 한글로  2-7자로 입력해주세요.");
@@ -95,28 +94,30 @@ public class MemberBasic {
 						tempNum = scan.nextInt();
 						scan.skip("\r\n");
 						System.out.println();
-						if (tempNum == 1 || tempNum == 0) 
+						if (tempNum == 1 || tempNum == 0)
 							break;
 					}
 
 					if (tempNum == 1) {
-						
-					      
-					     //나이 계산을 위해 setAge에 입력받은 생년월일을 넘겨줌
+
+						// 나이 계산을 위해 setAge에 입력받은 생년월일을 넘겨줌
 						MemberBasic.setAgeForSignUp(tempAge);
-						//dummyDataMember에 입력받은 값을 저장
-						dummyDataMember.add(new MemberBasic(memberNum, tempName, tempId, tempPw, age, tempAddress,
-								tempPnum, tempGender, 0, ""));
-						
+						MemberBasic.setPnumForsignUp(tempPnum);
+						// dummyDataMember에 입력받은 값을 저장
+						dummyDataMember.add(new MemberBasic(memberNum, tempName, tempId, tempPw, age, tempAddress, pnum,
+								tempGender, 0, ""));
+
 						// MemberDummy에 입력받은 값을 저장한 dummyDataMember를 매개변수로 넘겨줌
 						writeMemberDummy(dummyDataMember);
-					      System.out.println("\t\t\t    회원가입이 완료되었습니다.");
-					      System.out.println("\t\t\t 초기화면으로 돌아가시려면 엔터를 눌러주세요.");
-					      
-					      scan.nextLine();
-					     
+						System.out.println("\t\t\t==============================\n");
+						System.out.println("\t\t\t\t회원가입이 완료되었습니다.\n");
+						System.out.println("\t\t\t===============================");
+						System.out.println("\t\t\t 초기화면으로 돌아가시려면 엔터를 눌러주세요.");
+
+						scan.nextLine();
+
 						return;
-						
+
 					} else {
 						break;
 					}
@@ -126,12 +127,23 @@ public class MemberBasic {
 					scan.nextLine();
 				}
 			}
-		// accept()에게 return 받은 selectNum의 값이 "0"=약관 비동의일 경우 signUp메소드 종료
-		} else { 
+			// accept()에게 return 받은 selectNum의 값이 "0"=약관 비동의일 경우 signUp메소드 종료
+		} else {
 			return;
 		}
 
 	}
+
+	public static void setPnumForsignUp(String insertPnum) {
+
+		// pnum format 변경 ex) 010-1234-5678
+		if (!insertPnum.contains("-"))
+			insertPnum = String.format("%s-%s-%s", insertPnum.substring(0, 3), insertPnum.substring(3, 7),
+					insertPnum.substring(7, 11));
+
+		pnum = insertPnum;
+	}
+
 	public static void writeMemberDummy(ArrayList<MemberBasic> dummyDataMember) throws Exception {
 		// 더미데이터에 추가
 		File file = new File("resource\\Member.dat");
@@ -161,7 +173,7 @@ public class MemberBasic {
 		writer.close();
 
 	}
-	
+
 	private static String accept(Scanner scan) {
 
 		// 동의/비동의를 위한 변수 선언
@@ -184,7 +196,7 @@ public class MemberBasic {
 			System.out.println();
 			System.out.println();
 
-			//selectNum값을 MemberBaisc.signUp()에게 리턴해줌
+			// selectNum값을 MemberBaisc.signUp()에게 리턴해줌
 			if (selectNum.equals("1")) {
 				selectNum = "1";
 				break;
@@ -265,23 +277,23 @@ public class MemberBasic {
 	public int getAge() {
 		return age;
 	}
-	
+
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+
 	public static void setAgeForSignUp(String insertAge) {
 		Calendar c = Calendar.getInstance();
-        insertAge = insertAge.replace("-", "");
-        insertAge = insertAge.replace(".", "");
-        insertAge = insertAge.replace(",", "");
-        int year = Integer.parseInt(insertAge.substring(0, 4));
-        int month = Integer.parseInt(insertAge.substring(4, 6));
-        int day = Integer.parseInt(insertAge.substring(6, 8));
-        int tage = 0;
-        // 나이 계산
-        tage = c.get(Calendar.YEAR) - year + 1;
-        age = tage;
+		insertAge = insertAge.replace("-", "");
+		insertAge = insertAge.replace(".", "");
+		insertAge = insertAge.replace(",", "");
+		int year = Integer.parseInt(insertAge.substring(0, 4));
+		int month = Integer.parseInt(insertAge.substring(4, 6));
+		int day = Integer.parseInt(insertAge.substring(6, 8));
+		int tage = 0;
+		// 나이 계산
+		tage = c.get(Calendar.YEAR) - year + 1;
+		age = tage;
 	}
 
 	// 회원 주소
@@ -322,7 +334,7 @@ public class MemberBasic {
 
 	// 쿠폰 리스트
 	public String getCoupon() {
-		return Arrays.toString(coupon).substring(1, Arrays.toString(coupon).length()-1);
+		return Arrays.toString(coupon).substring(1, Arrays.toString(coupon).length() - 1);
 	}
 
 	public void setCoupon(String coupon) {

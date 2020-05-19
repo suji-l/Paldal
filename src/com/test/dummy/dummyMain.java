@@ -6,15 +6,15 @@ public class dummyMain {
 //		String path = "C:\\Users\\82109\\Documents\\GitHub\\Paldal\\resource";
 		String path = "D:\\Paldal\\resource";
 		
-//		CouponDummy couponDummy = new CouponDummy(path);
+		CouponDummy couponDummy = new CouponDummy(path);
 //		MemberDummy memberDummy = new MemberDummy(path);
-		PlaceDummy placeDummy = new PlaceDummy(path);
+//		PlaceDummy placeDummy = new PlaceDummy(path);
 //		ReservationDummy reservationDummy = new ReservationDummy(path);
 //		ReviewDummy reviewDummy = new ReviewDummy(path);
 //		StatisticsDummy statisticsDummy = new StatisticsDummy(path);
 //		WeatherDummy weatherDummy = new WeatherDummy(path);
-		
 		System.out.println("더미 데이터가 생성되었습니다.");
+		
 
 	}
 }

@@ -110,21 +110,21 @@ public class placeSelectMain {
 	         
 	         // 구 
 	         List<String> local2List = new ArrayList<String>();
-	         System.out.println("\t\t\t\t\t                       jw  ,w          \r\n" + 
-	                     "\t\t\t\t\t                     W5WwjjjWD         \r\n" + 
-	                     "\t\t\t\t\t              ,W55, DWwwWWWWj         \r\n" + 
-	                     "\t\t\t\t\t              WWwjjjWWWWWWWwWy        \r\n" + 
-	                     "\t\t\t\t\t              wwwwwwwwWwWWWjWj5       \r\n" + 
-	                     "\t\t\t\t\t           wWWwwWWwwwjWwwWWWwW5       \r\n" + 
-	                     "\t\t\t\t\t     W   wDyWWWWwwwjWWWwWjwWWj        \r\n" + 
-	                     "\t\t\t\t\t   wWwWyw    yDyjWwwwWjyy55yjjzW      \r\n" + 
-	                     "\t\t\t\t\t  yyyjwWWWyw    jDyy55y   Wj5D   5B8Z \r\n" + 
-	                     "\t\t\t\t\t       ,wwwWjyj,               5Wj    \r\n" + 
-	                     "\t\t\t\t\t       wWwwwWWwj5j   W5yy5BDBDDjj     \r\n" + 
-	                     "\t\t\t\t\t      jy5 ywWWwWWjjyyjWwWWjWWjWjjyE   \r\n" + 
-	                     "\t\t\t\t\t         jywwwWwwWjyDj55jWWWjDBzW    \r\n" + 
-	                     "\t\t\t\t\t            yjyyy5DDw jj Byyj         \r\n" + 
-	                     "\t\t\t\t\t                                   \r\n" + 
+	         System.out.println("\t\t\t\t                       jw  ,w          \r\n" + 
+	                     "\t\t\t\t                     W5WwjjjWD         \r\n" + 
+	                     "\t\t\t\t              ,W55, DWwwWWWWj         \r\n" + 
+	                     "\t\t\t\t              WWwjjjWWWWWWWwWy        \r\n" + 
+	                     "\t\t\t\t              wwwwwwwwWwWWWjWj5       \r\n" + 
+	                     "\t\t\t\t           wWWwwWWwwwjWwwWWWwW5       \r\n" + 
+	                     "\t\t\t\t     W   wDyWWWWwwwjWWWwWjwWWj        \r\n" + 
+	                     "\t\t\t\t   wWwWyw    yDyjWwwwWjyy55yjjzW      \r\n" + 
+	                     "\t\t\t\t  yyyjwWWWyw    jDyy55y   Wj5D   5B8Z \r\n" + 
+	                     "\t\t\t\t       ,wwwWjyj,               5Wj    \r\n" + 
+	                     "\t\t\t\t       wWwwwWWwj5j   W5yy5BDBDDjj     \r\n" + 
+	                     "\t\t\t\t      jy5 ywWWwWWjjyyjWwWWjWWjWjjyE   \r\n" + 
+	                     "\t\t\t\t         jywwwWwwWjyDj55jWWWjDBzW    \r\n" + 
+	                     "\t\t\t\t            yjyyy5DDw jj Byyj         \r\n" + 
+	                     "\t\t\t\t                                   \r\n" + 
 	                     "");
 
 	         // totalLocalMap을 돌며 사용자에게 입력받은 곳의 구들을 출력
@@ -177,7 +177,7 @@ public class placeSelectMain {
         seoul.add("서대문구"); seoul.add("송파구"); seoul.add("도봉구");
         seoul.add("서초구"); seoul.add("양천구"); seoul.add("은평구");
         seoul.add("성동구"); seoul.add("영등포구"); seoul.add("종로구");
-        seoul.add("성북구"); seoul.add("용산구"); seoul.add("중구구");
+        seoul.add("성북구"); seoul.add("용산구"); seoul.add("중구");
         
         
         ArrayList<String> Kyonggi = new ArrayList<String>();
