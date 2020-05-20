@@ -215,7 +215,7 @@ public class GetInfoOfPlaceMain {
 
                   int lineDurationTime = Integer.parseInt(line.split("■")[5].substring(0, line.split("■")[5].indexOf("(")));
                   int lineVisitCount = Integer
-                        .parseInt(line.split("■")[5].substring(line.split("■")[5].indexOf("(") + 1,4));
+                        .parseInt(line.split("■")[5].substring(line.split("■")[5].indexOf("(") + 1));
 
                   writer.write(selectedPlace.getPlaceNum() + "■" + selectedPlace.getName() + "■"
                         + selectedPlace.getDescription() + "■" + selectedPlace.getAddress() + "■"
