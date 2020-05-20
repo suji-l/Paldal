@@ -120,7 +120,7 @@ public class PlaceControl {
 		writer.write("■");
 		writer.write(String.format("%.1f", place.getStarAverage()));
 		writer.write("■");
-		writer.write(place.getDurationTime() == 0 ? "0" : place.getDurationTime() + "");
+		writer.write(place.getDurationTime() == 0 ? "0(0)" : place.getDurationTime() + "(0)");
 		writer.write("■");
 		writer.write(place.getCategory() + "");
 		writer.write("■");

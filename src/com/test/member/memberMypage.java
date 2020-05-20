@@ -112,7 +112,7 @@ public class memberMypage {
 	private void myReviewList(MemberBasic member) {
 
 		// 파일 경로
-		String path = "D:\\Paldal\\resource\\Review.dat";
+		String path = "resource\\Review.dat";
 
 		// 파일 생성
 		File reviewdummy = new File(path);
@@ -225,7 +225,7 @@ public class memberMypage {
 	private void myCoupon(MemberBasic member) {
 
 		// 파일 경로
-		String path = "D:\\Paldal\\resource\\Coupon.dat";
+		String path = "resource\\Coupon.dat";
 
 		// 파일생성
 		File coupondummy = new File(path);
@@ -242,7 +242,6 @@ public class memberMypage {
 
 			// 파일의 내용이 null값이 아닐때 까지 루프문 돌린다.
 			while ((line = reader.readLine()) != null) {
-
 				String[] list = line.split("■");
 
 				// 사용자가 가지고 있는 쿠폰번호와 파일안의 쿠폰 번호가 동일할 경우 값을 넣어주고 출력
@@ -267,7 +266,7 @@ public class memberMypage {
 			}
 
 		} catch (Exception e) {
-
+			System.out.println("Sadfasdfds");
 		}
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
@@ -279,7 +278,7 @@ public class memberMypage {
 	public void myInfo(MemberBasic member) {
 
 		// 파일 경로
-		String path = "D:\\Paldal\\resource\\Member.dat";
+		String path = "resource\\Member.dat";
 
 		// 파일 생성
 		File dummy = new File(path);
@@ -289,24 +288,22 @@ public class memberMypage {
 			BufferedReader reader = new BufferedReader(new FileReader(dummy));
 
 			String line = "";
-
 			// 파일의 내용이 null일때까지 루프문을 돌린다.
 			while ((line = reader.readLine()) != null) {
-
 				// "■"을 구분자로 해서 배열에 넣어준다
 				String[] list = line.split("■");
 
 				// 사용자의 아이디가 파일안의 아이디와 동일할 경우 값을 넣어주고 출력
 				if (list[2].equals(member.getId())) {
-
+					
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓회원정보〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.printf("\t\t\t아이디    : %s\n", member.getId());
-					System.out.printf("\t\t\t이름       : %s\n", member.getName());
-					System.out.printf("\t\t\t나이       : %d\n", member.getAge());
-					System.out.printf("\t\t\t주소       : %s\n", member.getAddress());
-					System.out.printf("\t\t\t성별       : %s\n", member.getGender());
-					System.out.printf("\t\t\t전화번호 : %s\n", member.getPnum());
-					System.out.printf("\t\t\t쿠폰번호 : %s\n", member.getCoupon());
+					System.out.printf("\t\t\t아이디    : %s\n", list[2]);
+					System.out.printf("\t\t\t이름      : %s\n", list[1]);
+					System.out.printf("\t\t\t나이      : %s\n", list[4]);
+					System.out.printf("\t\t\t주소      : %s\n", list[5]);
+					System.out.printf("\t\t\t성별      : %s\n", list[7]);
+					System.out.printf("\t\t\t전화번호 : %s\n", list[6]);
+					System.out.printf("\t\t\t쿠폰번호 : %s\n", list[9]);
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 				}
@@ -314,7 +311,7 @@ public class memberMypage {
 			}
 
 		} catch (Exception e) {
-
+			System.out.println("asdf");
 		}
 
 		System.out.println("\t\t\t계속 하시려면 엔터를 입력해주세요.\n");

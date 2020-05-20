@@ -158,7 +158,7 @@ public class MemberBasic {
 		writer.write("■");
 		writer.write(dummyDataMember.get(dummyDataMember.size() - 1).getPw());
 		writer.write("■");
-		writer.write(dummyDataMember.get(dummyDataMember.size() - 1).getAge());
+		writer.write(dummyDataMember.get(dummyDataMember.size() - 1).getAge()+"");
 		writer.write("■");
 		writer.write(dummyDataMember.get(dummyDataMember.size() - 1).getAddress());
 		writer.write("■");
@@ -166,7 +166,7 @@ public class MemberBasic {
 		writer.write("■");
 		writer.write(dummyDataMember.get(dummyDataMember.size() - 1).getGender());
 		writer.write("■");
-		writer.write(0);
+		writer.write(0+"");
 		writer.write("■");
 		writer.write("");
 

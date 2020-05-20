@@ -95,7 +95,7 @@ public class ReviewBasic {
 		System.out.println();
 		System.out.println("\t\t\t================ 리뷰 작성 ===============");
 
-		File file = new File("D:\\Paldal\\resource\\Review.dat");
+		File file = new File("resource\\Review.dat");
 		FileWriter writer = null;
 		try {
 			writer = new FileWriter(file, true);
@@ -136,7 +136,7 @@ public class ReviewBasic {
 		
 		if(flag.equals("in")) {
 			try {
-				writer.write("\n"+ makeRandomNum() + memberMain.getUserId() + "■" + content + "■");
+				writer.write("\n"+ makeRandomNum() + "■" + memberMain.getUserId() + "■" + content + "■");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -194,7 +194,7 @@ public class ReviewBasic {
         String line = null;
         int i = 1;
         try {
-           reader = new BufferedReader(new FileReader("D:\\Paldal\\resource\\Review.dat"));
+           reader = new BufferedReader(new FileReader("resource\\Review.dat"));
         } catch (FileNotFoundException e1) {
            
            e1.printStackTrace();

@@ -36,6 +36,7 @@ public class MemberControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	// 리스트에 있는 회원 내용 출력
@@ -78,7 +79,12 @@ public class MemberControl {
 
 	public void addCoupon(String memberNum, CouponBasic couponToMember) {
 		MemberBasic member = list.get(Integer.parseInt(memberNum)-1);
-		String coupon = list.get(Integer.parseInt(memberNum)-1).getCoupon()+","+couponToMember.getCouponNum();
+		String coupon = "";
+		if(list.get(Integer.parseInt(memberNum)-1).getCoupon().equals("")) {
+			coupon = couponToMember.getCouponNum();
+		} else {
+			coupon = list.get(Integer.parseInt(memberNum)-1).getCoupon()+","+couponToMember.getCouponNum();
+		}
 		coupon.replace(" ", "");
 		member.setCoupon(coupon);
 		

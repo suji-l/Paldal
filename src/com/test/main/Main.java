@@ -62,12 +62,17 @@ public class Main {
 					System.out.println("\t\t\t번호 입력 : ");
 					selectNum = scan.nextLine();
 					if (selectNum.equals("1")) {
-						boolean loginflag = memberMain.login(dummyDataMember); // 매개변수에 더미데이터 넣어주기
-						if (loginflag) {
+//						boolean loginflag = memberMain.login(dummyDataMember); // 매개변수에 더미데이터 넣어주기
+//						if (loginflag) {
+						MemberBasic loginMember = memberMain.login(dummyDataMember);
+						
+						if(loginMember != null) {
 							loginStatus = true; // 로그인 성공
 							// 회원 객체 생성
 							// 로그인할때 사용한 ID를 갖는 MemberBasic 객체 생성
-							MemberBasic member = new MemberBasic(memberMain.getUserId());
+//							String[] tmp = dummyDataMember.get
+							MemberBasic member = loginMember;
+//							MemberBasic member = new MemberBasic(memberMain.getUserId());
 							while (true) {
 								// 로그인 성공화면
 								System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -90,6 +95,8 @@ public class Main {
 									break;
 								}
 							}
+						} else {
+							System.out.println("Asdf");
 						}
 
 					} else if (selectNum.equals("0")) {
@@ -218,7 +225,7 @@ public class Main {
 		while ((line = reader.readLine()) != null) {
 			String[] tmp = line.split("■");
 			list.add(new MemberBasic(tmp[0], tmp[1], tmp[2], tmp[3], Integer.parseInt(tmp[4]), tmp[5], tmp[6], tmp[7],
-					Integer.parseInt(tmp[8]), ""));
+					Integer.parseInt(tmp[8]), tmp.length == 10 ? tmp[9] : ""));
 
 			// 블랙리스트 카운트, 쿠폰번호 왜 이렇게 넣었는지
 		}

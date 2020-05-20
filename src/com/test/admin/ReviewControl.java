@@ -46,7 +46,7 @@ public class ReviewControl {
 	
 	public void listAllReview() {
 		list.sort((o1, o2) -> (int)(o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
-		System.out.println("\t\t\t작성자\t명소\t댓글\t작성시간");
+		System.out.println("\t\t\t[작성자]\t   [명소]\t\t\t[리뷰]\t\t\t\t[작성시간]");
 		for (ReviewBasic reviewBasic : list) {
 			String memberName =String.format("%-15s", reviewBasic.getMemberName()); 
 			String placeName = reviewBasic.getPlaceName().length() > 10 ? String.format("%-10.10s..", reviewBasic.getPlaceName()) : String.format("%-11.11s", reviewBasic.getPlaceName());

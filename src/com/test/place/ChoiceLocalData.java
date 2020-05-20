@@ -36,7 +36,7 @@ public class ChoiceLocalData {
 		List<PlaceBasic>	gyunsang = new ArrayList<PlaceBasic>();  
 
 //		File file = new File("C:\\Users\\82109\\Documents\\GitHub\\Paldal\\resource\\Place.dat");
-		File file = new File("D:\\Paldal\\resource\\Place.dat");
+		File file = new File("resource\\Place.dat");
 		
 		String line = "";
 		int i = 0;
@@ -47,7 +47,9 @@ public class ChoiceLocalData {
 				String[] temp = line.split("■");
 
 				PlaceBasic pb = new PlaceBasic(temp[0], temp[1], temp[2], temp[3], Double.parseDouble(temp[4]),
-						Integer.parseInt(temp[5].substring(0,temp[5].indexOf("("))), Integer.parseInt(temp[6]), temp[7].equals("0") ? true : false, Integer.parseInt(temp[8]));
+						Integer.parseInt(temp[5].substring(0,temp[5].indexOf("("))),
+						Integer.parseInt(temp[6]), 
+						temp[7].equals("0") ? true : false, Integer.parseInt(temp[8]));
 				// 예약가능여부 
 				switch (pb.getAddress().split(" ")[0]) {
 					case "서울특별시":

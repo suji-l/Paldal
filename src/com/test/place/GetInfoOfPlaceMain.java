@@ -121,7 +121,7 @@ public class GetInfoOfPlaceMain {
 				System.out.println("\t\t\t3. 리뷰 더보기");
 				System.out.println("\t\t\t0. 뒤로가기");
 				System.out.println("\t\t\t=====================================");
-				System.out.println("\t\t\t번호 입력 : ");
+				System.out.print("\t\t\t번호 입력 : ");
 
 				// 사용자에게 번호를 입력받음
 				String selectNum = scan.nextLine();
@@ -151,14 +151,18 @@ public class GetInfoOfPlaceMain {
 					System.out.println();
 					System.out.println();
 					System.out.println();
+					System.out.println("\t\t\t계속 하시려면 엔터를 입력해주세요.");
+					scan.nextLine();
 					// 리뷰 더보기
 				} else if (selectNum.equals("3")) {
 					review.moreReview(selectedPlace);
 					System.out.println();
 					System.out.println();
 					System.out.println();
+					System.out.println("\t\t\t계속 하시려면 엔터를 입력해주세요.");
+					scan.nextLine();
 				} else if (selectNum.equals("0")) {
-					System.out.println("리스트로 돌아갑니다.");
+					System.out.println("\t\t\t리스트로 돌아갑니다.");
 					System.out.println();
 					System.out.println();
 					System.out.println();
@@ -295,7 +299,7 @@ public class GetInfoOfPlaceMain {
 		String line = null;
 		int i = 1;
 		try {
-			reader = new BufferedReader(new FileReader("D:\\Paldal\\resource\\Review.dat"));
+			reader = new BufferedReader(new FileReader("resource\\Review.dat"));
 		} catch (FileNotFoundException e1) {
 
 			e1.printStackTrace();
@@ -338,7 +342,7 @@ public class GetInfoOfPlaceMain {
 		int i = 1;
 
 		try {
-			reader = new BufferedReader(new FileReader("D:\\Paldal\\resource\\Review.dat"));
+			reader = new BufferedReader(new FileReader("resource\\Review.dat"));
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -373,7 +377,7 @@ public class GetInfoOfPlaceMain {
 	private void printInfo(PlaceBasic selectedPlace) {
 		// 형식에 맞게 출력
 		// 여기선 그냥 getter만 써서 작성하시면 됩니다.
-		System.out.println(selectedPlace.getName());
+		System.out.println(selectedPlace.getDescription().replace("●", "\n\t\t\t"));
 
 	}
 

@@ -113,7 +113,6 @@ public class CommonBasic {
 			if (!insertPNum.substring(0, 2).equals("01"))
 				throw new Exception("전화번호의 시작은 \"01*\"로 입력해주세요.");
 
-			System.out.println(insertGender);
 			if (!insertGender.equals("여자") && !insertGender.equals("남자")) {
 				throw new Exception("올바른 성별을 입력해 주세요 ex) 여자,남자");
 
@@ -145,8 +144,8 @@ public class CommonBasic {
 
 	}
 
-	public static boolean loginValidation(String insertId, String insertPw, ArrayList<MemberBasic> dummyDataMember) {
-
+	public static MemberBasic loginValidation(String insertId, String insertPw, ArrayList<MemberBasic> dummyDataMember) {
+		MemberBasic result = null;
 		// 유효성 검사 실시
 		try {
 
@@ -155,7 +154,8 @@ public class CommonBasic {
 
 			if (insertId.length() <= 0)
 				throw new Exception("아이디를 입력해주세요.");
-			for (int i = 0; i < dummyDataMember.size(); i++) {
+			int i=0;
+			for (i = 0; i < dummyDataMember.size(); i++) {
 				if (insertId.equals(dummyDataMember.get(i).getId())) {
 					idflag = true;
 					break;
@@ -167,12 +167,9 @@ public class CommonBasic {
 			// ID값은 있으나 패스워드가 일치하지 않을 때
 			boolean pwflag = false;
 
-			for (int i = 0; i < dummyDataMember.size(); i++) {
-				if (insertId.equals(dummyDataMember.get(i).getId())
-						&& (insertPw.equals(dummyDataMember.get(i).getPw()))) {
-					pwflag = true;
-					break;
-				}
+			if (insertPw.equals(dummyDataMember.get(i).getPw())) {
+				result = dummyDataMember.get(i);
+				pwflag = true;
 			}
 
 			if (pwflag == false)
@@ -181,10 +178,10 @@ public class CommonBasic {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 
-			return false;
+			return null;
 		}
 
-		return true;
+		return result;
 	}
 
 }

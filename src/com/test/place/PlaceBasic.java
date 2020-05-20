@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -162,7 +163,6 @@ public class PlaceBasic {
 	// 생성자
 	public PlaceBasic(String placeNum, String name, String description, String address, double starAverage,
 			int durationTime, int category, boolean reservationPosibility, int price) {
-		super();
 		this.placeNum = placeNum;
 		this.name = name;
 		this.description = description;
