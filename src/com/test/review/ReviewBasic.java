@@ -91,85 +91,93 @@ public class ReviewBasic {
 	}
 
 	public void writeReview(PlaceBasic place) {
-		System.out.println("\t\t\t  ※ 종료하려면 'REVIEW END' 를 입력해주세요.");
-		System.out.println();
-		System.out.println("\t\t\t================ 리뷰 작성 ===============");
+	      System.out.println("\t\t\t  ※ 종료하려면 'REVIEW END' 를 입력해주세요.");
+	      System.out.println();
+	      System.out.println("\t\t\t================ 리뷰 작성 ===============");
 
-		File file = new File("resource\\Review.dat");
-		FileWriter writer = null;
-		try {
-			writer = new FileWriter(file, true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.printf("\t\t\t 작성자 : %s\n", memberMain.getUserId());
-		System.out.printf("\t\t\t 장소명 : %s %s\n", place.getAddress(), place.getName());
-		System.out.println("\t\t\t---------------------------------------");
-		String content = "";
-		String flag = "in";
-		Scanner scan = new Scanner(System.in);
-		// 내용을 입력받는 while문
-		while (true) {
-			System.out.print("\t\t\t내용 : ");
-			content = scan.nextLine();
-			
-			// 욕 목록
-			String[] kindaShit = new String[] { "시발", "개새끼", "ㅅㅂ", "병신", "ㅄ", "호구", "창렬", "ㅈㄴ", "존나", "좆" };
-			
-			// 사용자에게 리뷰 입력받음
-			// review end 
-			if(content.equals("REVIEW END")) {break;}
-			// 욕 검사
-			for (String shit : kindaShit) {
-				if (content.contains(shit)) {
-					System.out.println("\t\t\t내용에 비속어가 들어있습니다. 다시 입력해주세요");
-					flag = shit;
-					break;
-				} 
-			}
-			System.out.println("");
-			if(flag.equals("in")) {
-				break;
-			}
-		}
-		
-		if(flag.equals("in")) {
-			try {
-				writer.write("\n"+ makeRandomNum() + "■" + memberMain.getUserId() + "■" + content + "■");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat time = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
-			String writetime = time.format(cal.getTime());
-			try {
-				writer.write(writetime + "■");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				writer.write(place.getPlaceNum() + "■" + place.getName()+"\n");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				writer.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("\t\t\t---------------------------------------");
-			System.out.println("\t\t\t리뷰 작성을 마칩니다.");
-		} else if(content.equals("REVIEW END")) {
-			System.out.println("\t\t\t리뷰 작성을 마칩니다.");
-		} else {
-			System.out.println("\t\t\t리뷰 작성을 마칩니다.");
-		}
-	}
+	      File file = new File("resource\\Review.dat");
+	      FileWriter writer = null;
+	      try {
+	         writer = new FileWriter(file, true);
+	      } catch (IOException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      System.out.printf("\t\t\t 작성자 : %s\n", memberMain.getUserId());
+	      System.out.printf("\t\t\t 장소명 : %s %s\n", place.getAddress(), place.getName());
+	      System.out.println("\t\t\t---------------------------------------");
+	      String content = "";
+	      String score = "";
+	      String flag = "in";
+	      Scanner scan = new Scanner(System.in);
+	      // 내용을 입력받는 while문
+	      while (true) {
+	         System.out.print("\t\t\t내용 : ");
+	         content = scan.nextLine();
+	         System.out.print("\t\t\t별점 : ");
+	         score = scan.nextLine();
+	         // 욕 목록
+	         String[] kindaShit = new String[] { "시발", "개새끼", "ㅅㅂ", "병신", "ㅄ", "호구", "창렬", "ㅈㄴ", "존나", "좆" };
+	         
+	         // 사용자에게 리뷰 입력받음
+	         // review end 
+	         if(content.equals("REVIEW END")) {break;}
+	         // 욕 검사
+	         for (String shit : kindaShit) {
+	            if (content.contains(shit)) {
+	               System.out.println("\t\t\t내용에 비속어가 들어있습니다. 다시 입력해주세요");
+	               flag = shit;
+	               break;
+	            } 
+	         }
+	         System.out.println("");
+	         if(flag.equals("in")) {
+	            break;
+	         }
+	      }
+	      
+	      if(flag.equals("in")) {
+	         try {
+	            writer.write(makeRandomNum() + "■" + memberMain.getUserId() + "■" + content + "■");
+	         } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	         Calendar cal = Calendar.getInstance();
+	         SimpleDateFormat time = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
+	         String writetime = time.format(cal.getTime());
+	         try {
+	            writer.write(writetime + "■");
+	         } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	         try {
+	            writer.write(place.getPlaceNum() + "■" + place.getName()+"■");
+	         } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	         try {
+	            writer.write(score + "\n");
+	         } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	         try {
+	            writer.close();
+	         } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	         System.out.println("\t\t\t---------------------------------------");
+	         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
+	      } else if(content.equals("REVIEW END")) {
+	         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
+	      } else {
+	         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
+	      }
+	   }
 	private String makeRandomNum() {
 		Random rnd = new Random();
 		int length = 0;

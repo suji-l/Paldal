@@ -178,7 +178,7 @@ public class StatisticsControl {
 			while ((line = reader.readLine()) != null) {
 				String[] tmp = line.split("■");
 				list2.add(new PlaceBasic(tmp[0], tmp[1], tmp[2], tmp[3], 0,
-						Integer.parseInt(tmp[5]), Integer.parseInt(tmp[6]), true, 0));
+						Integer.parseInt(tmp[5].substring(0, line.split("■")[5].indexOf("("))), Integer.parseInt(tmp[6]), true, 0));
 
 			}
 
@@ -195,7 +195,7 @@ public class StatisticsControl {
 			}
 
 			// 좌측 기준 명소별 체류시간 합산 /1000
-			int avg = ((culturePlaceDT1 + entertainPlaceDT + foodPlaceDT) / 1000);
+			int avg = ((culturePlaceDT1 + entertainPlaceDT + foodPlaceDT) / 100);
 
 			System.out.println();
 			String[][] graph = new String[avg][3];
@@ -211,16 +211,16 @@ public class StatisticsControl {
 			for (int i = avg - 1; i >= 0; i--) {
 				for (int j = 0; j < 3; j++) {
 					if (j == 0) { // j인자가 0인경우 문화재
-						for (int k = i; k >= avg - culturePlaceDT1 / 600; k--) {
+						for (int k = i; k >= avg - culturePlaceDT1 / 60; k--) {
 							graph[k][0] = "■";
 						}
 
 					} else if (j == 1) { // j인자가 1인경우 맛집
-						for (int k = i; k >= avg - (foodPlaceDT / 600); k--) {
+						for (int k = i; k >= avg - (foodPlaceDT / 60); k--) {
 							graph[k][1] = "★";
 						}
 					} else if (j == 2) { // j인자가 2인경우 놀거리
-						for (int k = i; k >= avg - entertainPlaceDT / 600; k--) {
+						for (int k = i; k >= avg - entertainPlaceDT / 60; k--) {
 							graph[k][2] = "●";
 						}
 					}

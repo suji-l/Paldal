@@ -33,7 +33,7 @@ public class StatisticsBasic {
 
 	public void visitorGraph() {
 		// 더미파일 로드
-		File file = new File("D:\\Paldal\\resource\\Statistics.dat");
+		File file = new File("resource\\Statistics.dat");
 
 		// 오늘날짜
 		Calendar cal = Calendar.getInstance();

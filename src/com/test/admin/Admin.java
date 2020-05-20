@@ -33,6 +33,7 @@ public class Admin {
 				String placeNum = scan.nextLine();
 				if(placeNum.equals("0")) {
 					place();		// 뒤로가기
+					break;
 				}
 				try {
 					// 명소 삭제

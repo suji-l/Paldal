@@ -73,7 +73,8 @@ public class ReviewControl {
 		} else {
 			resultList.sort(
 					(o1, o2) -> (int) (o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
-			System.out.println("\t\t\t작성자\t명소\t댓글\t작성시간");
+			System.out.println();
+			System.out.println("\t\t\t[작성자]\t   [명소]\t\t\t[리뷰]\t\t\t\t[작성시간]");
 			for (ReviewBasic reviewBasic : resultList) {
 				String memberName = String.format("%-15s", reviewBasic.getMemberName());
 				String placeName = reviewBasic.getPlaceName().length() > 10
@@ -106,7 +107,8 @@ public class ReviewControl {
 		}
 		else {
 			resultList.sort((o1, o2) -> (int)(o2.getReviewTime().getTimeInMillis() - o1.getReviewTime().getTimeInMillis()));
-			System.out.println("\t\t\t작성자\t명소\t댓글\t작성시간");
+			System.out.println();
+			System.out.println("\t\t\t작성자\t          명소\t             댓글\t                 작성시간");
 			for (ReviewBasic reviewBasic : resultList) {
 				String memberName =String.format("%-15s", reviewBasic.getMemberName()); 
 				String placeName = reviewBasic.getPlaceName().length() > 10 ? String.format("%-10.10s..", reviewBasic.getPlaceName()) : String.format("%-11.11s", reviewBasic.getPlaceName());

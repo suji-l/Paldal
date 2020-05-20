@@ -117,7 +117,7 @@ public class NoticeControl {
 	// 공지사항 출력
 	public void printNoticeList() {
 		System.out.println("\t\t\t공지 번호\t제목");
-		list.sort((o1, o2) -> (int)(o1.getNoticeInsertDate().getTimeInMillis() - o2.getNoticeInsertDate().getTimeInMillis()));
+//		list.sort((o1, o2) -> (int)(o1.getNoticeInsertDate().getTimeInMillis() - o2.getNoticeInsertDate().getTimeInMillis()));
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println("\t\t\t"+(i+1) + "\t"+list.get(i).getNoticeTitle() + "\t" + String.format("%tF", list.get(i).getNoticeInsertDate()));
 		}
