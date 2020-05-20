@@ -207,7 +207,6 @@ public class PlaceControl {
 			writeDummy(list.get(0), false);
 			for (int i = 1; i < list.size(); i++) {
 				writeDummy(list.get(i), true);
-				break;
 			}
 		} catch (IOException e) {
 			System.out.println();
