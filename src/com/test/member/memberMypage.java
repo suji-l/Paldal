@@ -147,7 +147,7 @@ public class memberMypage {
 						tmp = null;
 					}
 
-					ReviewBasic rev = new ReviewBasic(list[0], list[1], list[2], reviewCal, list[4],tmp);
+					ReviewBasic rev = new ReviewBasic(list[0], list[1], list[2], reviewCal, list[4],list[5], list[6]);
 
 					System.out.println("\t\t\t-----------------------------------------------");
 					System.out.printf("\t\t\t명소 : %s\n", rev.getPlaceName());
@@ -177,7 +177,7 @@ public class memberMypage {
 
 		// 파일 경로
 
-		String path = "D:\\Paldal\\resource\\Reservation.dat";
+		String path = "resource\\Reservation.dat";
 
 		// 파일 생성
 		File dummy = new File(path);

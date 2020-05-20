@@ -17,186 +17,181 @@ import com.test.place.PlaceBasic;
 
 public class ReviewBasic {
 
-	private String reviewNum; // 리뷰 번호
-	private String memberName; // 리뷰 작성자 이름
-	private String reviewText; // 리뷰 내용
-	private Calendar reviewTime; // 리뷰 작성 시간
-	private String placeNum; // 리뷰가 작성된 명소의 번호
-	private String placeName;
+   private String reviewNum; // 리뷰 번호
+   private String memberName; // 리뷰 작성자 이름
+   private String reviewText; // 리뷰 내용
+   private Calendar reviewTime; // 리뷰 작성 시간
+   private String placeNum; // 리뷰가 작성된 명소의 번호
+   private String placeName;
+   private String placeScore;
 
-	public ReviewBasic(String reviewNum, String memberName, String reviewText, Calendar reviewTime, String placeNum,
-			String placeName) {
-		this.reviewNum = reviewNum;
-		this.memberName = memberName;
-		this.reviewText = reviewText;
-		this.reviewTime = reviewTime;
-		this.placeNum = placeNum;
-		this.placeName = placeName;
-	}
+   public ReviewBasic(String reviewNum, String memberName, String reviewText, Calendar reviewTime, String placeNum,
+         String placeName, String placeScore) {
+      this.reviewNum = reviewNum;
+      this.memberName = memberName;
+      this.reviewText = reviewText;
+      this.reviewTime = reviewTime;
+      this.placeNum = placeNum;
+      this.placeName = placeName;
+      this.placeScore = placeScore;
+   }
 
-	public ReviewBasic(PlaceBasic place) {
-		// 매개변수로 들어온 place의 리뷰 넣어주기
-	}
+   public ReviewBasic(PlaceBasic place) {
+      // 매개변수로 들어온 place의 리뷰 넣어주기
+   }
 
-	public String getPlaceName() {
-		return placeName;
-	}
+   public String getPlaceName() {
+      return placeName;
+   }
 
-	public void setPlaceName(String placeName) {
-		this.placeName = placeName;
-	}
+   public void setPlaceName(String placeName) {
+      this.placeName = placeName;
+   }
 
-	// 리뷰 번호
-	public String getReviewNum() {
-		return reviewNum;
-	}
+   // 리뷰 번호
+   public String getReviewNum() {
+      return reviewNum;
+   }
 
-	public void setReviewNum(String reviewNum) {
-		this.reviewNum = reviewNum;
-	}
+   public void setReviewNum(String reviewNum) {
+      this.reviewNum = reviewNum;
+   }
 
-	// 리뷰 작성자 이름
-	public String getMemberName() {
-		return memberName;
-	}
+   // 리뷰 작성자 이름
+   public String getMemberName() {
+      return memberName;
+   }
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+   public void setMemberName(String memberName) {
+      this.memberName = memberName;
+   }
 
-	// 리뷰 내용
-	public String getReviewText() {
-		return reviewText;
-	}
+   // 리뷰 내용
+   public String getReviewText() {
+      return reviewText;
+   }
 
-	public void setReviewText(String reviewText) {
-		this.reviewText = reviewText;
-	}
+   public void setReviewText(String reviewText) {
+      this.reviewText = reviewText;
+   }
 
-	// 리뷰 작성 시간
-	public Calendar getReviewTime() {
-		return reviewTime;
-	}
+   // 리뷰 작성 시간
+   public Calendar getReviewTime() {
+      return reviewTime;
+   }
 
-	public void setReviewTime(Calendar reviewTime) {
-		this.reviewTime = reviewTime;
-	}
+   public void setReviewTime(Calendar reviewTime) {
+      this.reviewTime = reviewTime;
+   }
 
-	public String getPlaceNum() {
-		return placeNum;
-	}
+   public String getPlaceNum() {
+      return placeNum;
+   }
 
-	public void setPlaceNum(String placeNum) {
-		this.placeNum = placeNum;
-	}
+   public void setPlaceNum(String placeNum) {
+      this.placeNum = placeNum;
+   }
+   public String getPlaceScore() {
+      return placeScore;
+   }
 
-	public void writeReview(PlaceBasic place) {
-	      System.out.println("\t\t\t  ※ 종료하려면 'REVIEW END' 를 입력해주세요.");
-	      System.out.println();
-	      System.out.println("\t\t\t================ 리뷰 작성 ===============");
+   public void setPlaceScore(String placeScore) {
+      this.placeScore = placeScore;
+   }
 
-	      File file = new File("resource\\Review.dat");
-	      FileWriter writer = null;
-	      try {
-	         writer = new FileWriter(file, true);
-	      } catch (IOException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }
-	      System.out.printf("\t\t\t 작성자 : %s\n", memberMain.getUserId());
-	      System.out.printf("\t\t\t 장소명 : %s %s\n", place.getAddress(), place.getName());
-	      System.out.println("\t\t\t---------------------------------------");
-	      String content = "";
-	      String score = "";
-	      String flag = "in";
-	      Scanner scan = new Scanner(System.in);
-	      // 내용을 입력받는 while문
-	      while (true) {
-	         System.out.print("\t\t\t내용 : ");
-	         content = scan.nextLine();
-	         System.out.print("\t\t\t별점 : ");
-	         score = scan.nextLine();
-	         // 욕 목록
-	         String[] kindaShit = new String[] { "시발", "개새끼", "ㅅㅂ", "병신", "ㅄ", "호구", "창렬", "ㅈㄴ", "존나", "좆" };
-	         
-	         // 사용자에게 리뷰 입력받음
-	         // review end 
-	         if(content.equals("REVIEW END")) {break;}
-	         // 욕 검사
-	         for (String shit : kindaShit) {
-	            if (content.contains(shit)) {
-	               System.out.println("\t\t\t내용에 비속어가 들어있습니다. 다시 입력해주세요");
-	               flag = shit;
-	               break;
-	            } 
-	         }
-	         System.out.println("");
-	         if(flag.equals("in")) {
-	            break;
-	         }
-	      }
-	      
-	      if(flag.equals("in")) {
-	         try {
-	            writer.write(makeRandomNum() + "■" + memberMain.getUserId() + "■" + content + "■");
-	         } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }
-	         Calendar cal = Calendar.getInstance();
-	         SimpleDateFormat time = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
-	         String writetime = time.format(cal.getTime());
-	         try {
-	            writer.write(writetime + "■");
-	         } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }
-	         try {
-	            writer.write(place.getPlaceNum() + "■" + place.getName()+"■");
-	         } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }
-	         try {
-	            writer.write(score + "\n");
-	         } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }
-	         try {
-	            writer.close();
-	         } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }
-	         System.out.println("\t\t\t---------------------------------------");
-	         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
-	      } else if(content.equals("REVIEW END")) {
-	         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
-	      } else {
-	         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
-	      }
-	   }
-	private String makeRandomNum() {
-		Random rnd = new Random();
-		int length = 0;
-		String result = "";
-		for (int i = 0; i < 8; i++) {
-			int tmp = rnd.nextInt(12);
-			if (tmp % 3 == 0) {
-				result += rnd.nextInt(10);
-			} else if (tmp % 3 == 1) {
-				result += (char) (rnd.nextInt(26) + 65);
+   public void writeReview(PlaceBasic place) {
+      System.out.println("\t\t\t  ※ 종료하려면 'REVIEW END' 를 입력해주세요.");
+      System.out.println();
+      System.out.println("\t\t\t================ 리뷰 작성 ===============");
 
-			} else {
-				result += (char) (rnd.nextInt(26) + 97);
-			}
-		}
-		return result;
-	}
+      File file = new File("resource\\Review.dat");
+      FileWriter writer = null;
+      try {
+         writer = new FileWriter(file, true);
+      } catch (IOException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      System.out.printf("\t\t\t 작성자 : %s\n", memberMain.getUserId());
+      System.out.printf("\t\t\t 장소명 : %s %s\n", place.getAddress(), place.getName());
+      System.out.println("\t\t\t---------------------------------------");
+      String content = "";
+      String flag = "in";
+      Scanner scan = new Scanner(System.in);
+      // 내용을 입력받는 while문
+      while (true) {
+         System.out.print("\t\t\t내용 : ");
+         content = scan.nextLine();
+         
+         // 욕 목록
+         String[] kindaShit = new String[] { "시발", "개새끼", "ㅅㅂ", "병신", "ㅄ", "호구", "창렬", "ㅈㄴ", "존나", "좆" };
+         
+         // 사용자에게 리뷰 입력받음
+         // review end 
+         if(content.equals("REVIEW END")) {break;}
+         // 욕 검사
+         for (String shit : kindaShit) {
+            if (content.contains(shit)) {
+               System.out.println("\t\t\t내용에 비속어가 들어있습니다. 다시 입력해주세요");
+               flag = shit;
+               break;
+            } 
+         }
+         System.out.println("");
+         if(flag.equals("in")) {
+            break;
+         }
+      }
+      
+      if(flag.equals("in")) {
+         int i = 1;
+            
+         try {
+            writer.write("\n"+ i + "■" + memberMain.getUserId() + "■" + content + "■");
+         
+         
+         Calendar cal = Calendar.getInstance();
+         SimpleDateFormat time = new SimpleDateFormat("yyyy.MM.dd.HH.mm");
+         String writetime = time.format(cal.getTime());
+         
+            writer.write(writetime + "■");
+         
+         
+            writer.write(place.getPlaceNum() + "■" + place.getName() + "■" + place.getStarAverage() + "\n");
+         
+         
+            writer.close();
+         } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+         System.out.println("\t\t\t---------------------------------------");
+         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
+      } else if(content.equals("REVIEW END")) {
+         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
+      } else {
+         System.out.println("\t\t\t리뷰 작성을 마칩니다.");
+      }
+   }
+   private String makeRandomNum() {
+      Random rnd = new Random();
+      int length = 0;
+      String result = "";
+      for (int i = 0; i < 8; i++) {
+         int tmp = rnd.nextInt(12);
+         if (tmp % 3 == 0) {
+            result += rnd.nextInt(10);
+         } else if (tmp % 3 == 1) {
+            result += (char) (rnd.nextInt(26) + 65);
 
-	public void moreReview(PlaceBasic place) {
+         } else {
+            result += (char) (rnd.nextInt(26) + 97);
+         }
+      }
+      return result;
+   }
+
+   public void moreReview(PlaceBasic place) {
         // 여기서 5개만 보여주다가 전부다를 보여주는데 혹시 5개 이후것만 보여줄 수 있게가 가능하면 그렇게 작업ㄱ
         BufferedReader reader = null;
         String line = null;
@@ -237,6 +232,8 @@ public class ReviewBasic {
 
      
 
-	}
+   }
+
+   
 
 }

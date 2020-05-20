@@ -116,12 +116,13 @@ public class ReservationBasic {
          dicountPrice = price * dcPercetage;
       } else if (couponNum.equals("0")) {
          System.out.println("\t\t\t쿠폰을 사용하지 않습니다.");
+         price = place.getPrice();
       } else {
          System.out.println("\t\t\t번호를 다시 입력해주세요");
       }
-
+      
       // 할인된 가격 출력
-      System.out.printf("\t\t\t 최종 가격 : %,d원\n", (int) (price - dicountPrice));
+      System.out.printf("\t\t\t 최종 가격 : %,d원\n", (int) ((price*Integer.parseInt(personCount)) - dicountPrice) );
       System.out.println("\t\t\t1. 예약 완료");
       System.out.println("\t\t\t0. 예약 취소");
       String selectNum = scan.nextLine();
@@ -134,7 +135,7 @@ public class ReservationBasic {
             writer.write("\n" + makeRandomNum() + "■" + memberMain.getUserId() + "■" + // ID
                   place.getName() + "■" + // 장소명
                   String.valueOf(place.getCategory()) + "■" + // 카테고리
-                  date + "■" + String.valueOf(dicountPrice) + "■" + possibleCouponList.get(0)[0] + "\n"); // 사용가능한 쿠폰이 없으면 indexboundation 오류
+                  date + "■" + String.valueOf(((price*Integer.parseInt(personCount)) - dicountPrice)) + "■" + possibleCouponList.get(0)[0] + "\n"); // 사용가능한 쿠폰이 없으면 indexboundation 오류
             writer.close();
             System.out.println("\t\t\t예약이 완료되었습니다.");
             System.out.println("\t\t\t계속하시려면 엔터를 눌러주세요.");

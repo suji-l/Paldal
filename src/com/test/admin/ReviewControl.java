@@ -35,7 +35,7 @@ public class ReviewControl {
 						Integer.parseInt(tmp[3].split("\\.")[4]));
 				
 				ReviewBasic review = new ReviewBasic
-						(tmp[0], tmp[1], tmp[2], reviewTime, tmp[4], tmp[5]);
+						(tmp[0], tmp[1], tmp[2], reviewTime, tmp[4], tmp[5], tmp[6]);
 				list.add(review);
 			}
 			reader.close();

@@ -68,11 +68,11 @@ public class PlaceBasic {
 	      }
 	      System.out.println("\n\t\t\t                    🔥  오늘의 HOT 🔥");
 	      System.out.println("\t\t\t");
-	      System.out.println("\t\t 👉   순위\t이름\t\t위치\t\t별점\t카테고리 ");
+	      System.out.println("\t\t 👉   순위\t        이름\t\t                 위치\t\t별점\t카테고리 ");
 	      // 뒤에서부터 5개까지의 데이터를 출력, 뒤에서부터 도는 이유는 TreeMap의 key는 오름차순이기 때문에 뒤에서부터 돌아야 체류시간 높은
 	      // 순
 	      for (int i = placeDataList.size() - 1, j = 1; i >= 0 ; i--, j++) {
-	         System.out.printf("\t\t    %d\t%s\t%s\t%s\t%s\n", 
+	    	  System.out.printf("\t\t   %d\t%10s\t%17s\t%s\t%s\n", 
 	               j, placeDataList.get(i)[1],placeDataList.get(i)[3], placeDataList.get(i)[4],
 	               placeDataList.get(i)[6].equals("1") ? "문화재" : placeDataList.get(i)[6].equals("2") ? "맛집" : "놀거리");
 
