@@ -4,9 +4,9 @@ public class dummyMain {
 	
 	public static void createDummy() throws Exception {
 //		String path = "C:\\Users\\82109\\Documents\\GitHub\\Paldal\\resource";
-		String path = "D:\\Paldal\\resource";
+		String path = "resource\\";
 		
-		CouponDummy couponDummy = new CouponDummy(path);
+//		CouponDummy couponDummy = new CouponDummy(path);
 //		MemberDummy memberDummy = new MemberDummy(path);
 //		PlaceDummy placeDummy = new PlaceDummy(path);
 //		ReservationDummy reservationDummy = new ReservationDummy(path);

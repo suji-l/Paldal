@@ -22,7 +22,7 @@ public class GetInfoOfPlaceMain {
    boolean loginStatus;
 
    public void getListOfLocal(List<PlaceBasic> allPlaceThatSelectedbyUser, String totalPlace, String sortNum) {
-      System.out.printf("\n\t\t\t================= %s =======================\n", totalPlace);
+      System.out.printf("\n\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓 %s 〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n", totalPlace);
       System.out.print("\t\t\t[순서]\t   [장소명]\t\t [위치]\t       [별점]\n");
       while (true) {
          // 사용자에게 명소 번호를 입력받음
@@ -77,7 +77,7 @@ public class GetInfoOfPlaceMain {
 
          }
          // 사용자에게 명소 번호를 입력받음
-         System.out.println("\t\t\t==================================================");
+         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
          System.out.println("\t\t\t0. 뒤로가기");
          System.out.print("\t\t\t번호 입력 : ");
 
@@ -209,13 +209,17 @@ public class GetInfoOfPlaceMain {
          try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("resource\\PlaceForMod.dat"));
             while ((line = reader.readLine()) != null) {
-
+            	System.out.println(line.split("■")[5]);
                if ((line.split("■")[1].equals(selectedPlace.getName())
                      && line.split("■")[3].equals(selectedPlace.getAddress()))) {
 
                   int lineDurationTime = Integer.parseInt(line.split("■")[5].substring(0, line.split("■")[5].indexOf("(")));
-                  int lineVisitCount = Integer
-                        .parseInt(line.split("■")[5].substring(line.split("■")[5].indexOf("(") + 1));
+                  int lineVisitCount = Integer.parseInt(
+                		  
+                		  line.split("■")[5].substring(
+                				  line.split("■")[5].indexOf("(") + 1,
+                				  line.split("■")[5].indexOf(")")
+                				  ));
 
                   writer.write(selectedPlace.getPlaceNum() + "■" + selectedPlace.getName() + "■"
                         + selectedPlace.getDescription() + "■" + selectedPlace.getAddress() + "■"

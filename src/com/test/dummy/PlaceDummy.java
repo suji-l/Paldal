@@ -88,7 +88,7 @@ public class PlaceDummy {
          String starAverage = Float.toString((float) (rnd.nextInt(50) * 0.1));
 
          // 평균 체류시간
-         String DurationTime = Integer.toString(rnd.nextInt(40) + 1) +"(" + Integer.toString(rnd.nextInt(15) + 1); 
+         String DurationTime = Integer.toString(rnd.nextInt(40) + 1) +"(" + Integer.toString(rnd.nextInt(15) + 1) + ")"; 
 
          // 문화재(1), 맛집(2), 놀거리(3) 카테고리
          String category = Integer.toString(rnd.nextInt(3)+1);

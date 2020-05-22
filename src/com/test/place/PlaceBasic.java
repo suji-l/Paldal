@@ -99,10 +99,10 @@ public class PlaceBasic {
 		boolean placeFlag = true;
 		while (placeFlag) {
 			placeSelectMain placeMain = new placeSelectMain();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 지역선택 [ 특별시 & 도 ]");
 			System.out.println("\t\t\t0. 뒤로가기");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t번호 입력:");
 			
 			selectNum = scan.nextLine();
@@ -123,12 +123,12 @@ public class PlaceBasic {
 						getListOfLocal.weather();
 						
 						// 카테고리 출력
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓 카테고리 〓〓〓〓〓〓〓〓\n");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓 카테고리 〓〓〓〓〓〓〓〓");
 						System.out.println("\t\t\t1. 문화재");
 						System.out.println("\t\t\t2. 맛집");
 						System.out.println("\t\t\t3. 놀거리");
 						System.out.println("\t\t\t0. 뒤로가기");
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 						System.out.println("\t\t\t번호 입력:");
 						
 						// 카테고리 입력받음
@@ -140,11 +140,11 @@ public class PlaceBasic {
 						// 사용자가 선택한 지역 & 해당되는 카테고리의 명소 리스트 출력
 						List<PlaceBasic> allPlaceThatSelectedbyUser = ChoiceLocalData.filterArea(totalPlace.replaceAll(" ", ""),categoryNum);
 						// allPlaceThatSelectedbyUser에는 Place객체가 들어가있는 List
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓 정렬 순서 〓〓〓〓〓〓〓〓\n");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓 정렬 순서 〓〓〓〓〓〓〓〓");
 						System.out.println("\t\t\t1.가나다순");
 						System.out.println("\t\t\t2.인기순");
 						System.out.println("\t\t\t0. 뒤로가기");
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 						System.out.println("\t\t\t번호 입력:");
 						String sortNum = scan.nextLine();
 						getListOfLocal.getListOfLocal(allPlaceThatSelectedbyUser,totalPlace,sortNum);

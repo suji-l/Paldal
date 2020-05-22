@@ -19,33 +19,32 @@ import com.test.common.CommonBasic;
 import com.test.dummy.dummyMain;
 import com.test.member.MemberBasic;
 import com.test.member.memberMain;
-import com.test.member.memberMypage;
+import com.test.member.MemberMypage;
 import com.test.notice.NoticeNewObject;
 import com.test.place.ChoiceLocalData;
 import com.test.place.PlaceBasic;
+import com.test.place.placeSelectMain;
 import com.test.statistics.StatisticsBasic;
 
 public class Main {
 	public static boolean loginStatus = false;
 	static boolean flag = true;
-	static Scanner scan = new Scanner(System.in);
-	static String path = "resource\\";
-
+	
 	public static void main(String[] args) throws Exception {
 		// 더미데이터
-//      dummyMain.createDummy();
-		// 더미 데이터 불러오기
-		// 회원 더미데이터
-		ArrayList<MemberBasic> dummyDataMember = loadMember("resource\\Member.dat");
-		List<String> dummyDataPlace = new ArrayList<String>();
-
-		// 변수
-//		boolean flag = false;
+//		dummyMain.createDummy();
+		
 		boolean flag = true;
 		while (flag) {
-
+			String path = "resource\\";
+			ArrayList<MemberBasic> dummyDataMember = loadMember(path + "Member.dat");
+			
 			// main 화면 출력
+			Scanner scan = new Scanner(System.in);
+			placeSelectMain.printMainKorea();
+			
 			CommonBasic.printMain();
+			
 			// 사용자에게 번호를 입력받을 scanner 선언
 			System.out.print("\t\t\t번호 입력 : ");
 			String selectNum = scan.nextLine();
@@ -62,21 +61,16 @@ public class Main {
 					System.out.println("\t\t\t번호 입력 : ");
 					selectNum = scan.nextLine();
 					if (selectNum.equals("1")) {
-//						boolean loginflag = memberMain.login(dummyDataMember); // 매개변수에 더미데이터 넣어주기
-//						if (loginflag) {
 						MemberBasic loginMember = memberMain.login(dummyDataMember);
 						
 						if(loginMember != null) {
 							loginStatus = true; // 로그인 성공
 							// 회원 객체 생성
 							// 로그인할때 사용한 ID를 갖는 MemberBasic 객체 생성
-//							String[] tmp = dummyDataMember.get
-							MemberBasic member = loginMember;
-//							MemberBasic member = new MemberBasic(memberMain.getUserId());
 							while (true) {
 								// 로그인 성공화면
 								System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-								System.out.printf("\t\t\tID : %s", member.getId());
+								System.out.printf("\t\t\tID : %s", loginMember.getId());
 								PlaceBasic.printMain();
 								System.out.println("\t\t\t번호 입력 : ");
 								selectNum = scan.nextLine();
@@ -84,7 +78,7 @@ public class Main {
 								if (selectNum.equals("1")) {
 									// My Page 메뉴를 반복하는 while문
 									// 위에서 생성한 객체를 넣어줌
-									memberMypage memberMypage = new memberMypage(member);
+									MemberMypage memberMypage = new MemberMypage(loginMember);
 									memberMypage.mainMenu();
 								} else if (selectNum.equals("2")) {
 									// 장소찾기
@@ -120,6 +114,7 @@ public class Main {
 			else if (selectNum.equals("4")) {
 				String pw = "pw";
 				while (true) {
+					placeSelectMain.printMainKorea();
 					System.out.println("\t\t\t========== 관리자 모드 =========");
 					System.out.println("\t\t\t패스워드를 입력해주세요!");
 					System.out.println("\t\t\t=============================\n");
@@ -215,7 +210,6 @@ public class Main {
 			}
 		}
 	}// main
-
 	public static ArrayList<MemberBasic> loadMember(String path) throws Exception {
 
 		ArrayList<MemberBasic> list = new ArrayList<MemberBasic>();
@@ -232,5 +226,4 @@ public class Main {
 
 		return list;
 	}
-
 }

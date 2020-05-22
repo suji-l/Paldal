@@ -11,11 +11,11 @@ import com.test.coupon.CouponBasic;
 import com.test.reservation.ReservationBasic;
 import com.test.review.ReviewBasic;
 
-public class memberMypage {
+public class MemberMypage {
 	Scanner scan = new Scanner(System.in);
 	MemberBasic member;
 
-	public memberMypage(MemberBasic member) {
+	public MemberMypage(MemberBasic member) {
 		this.member = member;
 	}
 
