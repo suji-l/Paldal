@@ -36,6 +36,8 @@ public class Main {
 		
 		boolean flag = true;
 		while (flag) {
+			// 시간대별 방문자 추이 작성을 위한 메소드
+//			StatisticsBasic.writeVisitorData();
 			String path = "resource\\";
 			ArrayList<MemberBasic> dummyDataMember = loadMember(path + "Member.dat");
 			
@@ -90,7 +92,7 @@ public class Main {
 								}
 							}
 						} else {
-							System.out.println("Asdf");
+							
 						}
 
 					} else if (selectNum.equals("0")) {

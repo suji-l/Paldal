@@ -1,9 +1,11 @@
 package com.test.statistics;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,10 +27,6 @@ public class StatisticsBasic {
 		}
 		this.countReservation = countReservation;
 
-	}
-
-	public StatisticsBasic() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void visitorGraph() {
@@ -103,7 +101,6 @@ public class StatisticsBasic {
 		System.out.println("\n\t\t\t\t\t시간별 방문자 추이");
 	}
 
-
 	// 날짜
 	public Calendar getDateData() {
 		return dateData;
@@ -133,5 +130,47 @@ public class StatisticsBasic {
 			this.numOfvisitorByHourList[i] = Integer.parseInt(tmp[i]);
 		}
 	}
+
+	public static void writeVisitorData() {
+		File file = new File("resource\\Statistics.dat");
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat time = new SimpleDateFormat("yyyy.MM.dd");
+			String writetime = time.format(cal.getTime());
+			System.out.println(writetime);
+			writer.write(writetime + "■" + 
+			"0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0■0");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	// 방문한 시간에 맞는 데이터를 넣어주는 소스 코드
+//	public static void plusVisitorData() {
+//		File file = new File("resource\\Statistics.dat");
+//		Calendar cal = Calendar.getInstance();
+//		SimpleDateFormat time = new SimpleDateFormat("yyyy.MM.dd");
+//		String writetime = time.format(cal.getTime());
+//		try {
+//			BufferedReader reader = new BufferedReader(new FileReader(file));
+//			String line = "";
+//			try {
+//				while ((line = reader.readLine()) != null) {
+//					if(line.equals(writetime)) {
+//						String[] data = line.split("■");
+//						
+//					}
+//				}
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 
 }

@@ -140,12 +140,12 @@ public class MemberMypage {
 					reviewCal.set(Calendar.DATE, Integer.parseInt(list[3].substring(8, 10)));
 
 					// 수정 : 리뷰 더미파일 list[6]부분에 (문화재위치) 넣어야함.
-					String tmp;
-					if (list.length == 6) {
-						tmp = list[5];
-					} else {
-						tmp = null;
-					}
+//					String tmp;
+//					if (list.length == 6) {
+//						tmp = list[5];
+//					} else {
+//						tmp = null;
+//					}
 
 					ReviewBasic rev = new ReviewBasic(list[0], list[1], list[2], reviewCal, list[4],list[5], list[6]);
 
@@ -161,9 +161,7 @@ public class MemberMypage {
 			}
 
 		} catch (Exception e) {
-
-			System.out.println("오류");
-
+			
 		}
 
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -311,7 +309,8 @@ public class MemberMypage {
 			}
 
 		} catch (Exception e) {
-			System.out.println("asdf");
+			System.out.printf("\t\t\t쿠폰번호 : \n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		}
 
 		System.out.println("\t\t\t계속 하시려면 엔터를 입력해주세요.\n");

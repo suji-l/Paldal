@@ -12,31 +12,31 @@ import java.util.Scanner;
 import com.test.place.PlaceBasic;
 
 public class StatisticsControl {
-	
-	public void timeStatistics() throws Exception {
 
+	public void timeStatistics() throws Exception {
+		
+		// 통계 데이터 불러오기
 		File file = new File("resource\\Statistics.dat");
 
+		// 오늘 날짜의 통계 데이터 출력을 위해 오늘 날짜 String 변수에 할당
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat time = new SimpleDateFormat("yyyy.MM.dd");
 		String writetime = time.format(cal.getTime());
 		String line = "";
-
+		
+		// 방문자 데이터를 할당을 위한 ArrayList 선언
 		ArrayList<String> Person = new ArrayList<String>();
-
+		
 		BufferedReader reader = new BufferedReader(new FileReader(file));
+		System.out.println("\t\t\t날짜: ");
+		// 파일을 읽으며 오늘 날짜의 데이터
 		while ((line = reader.readLine()) != null) {
 			String[] temp = line.split("■");
-
-			if (line.contains(writetime)) {
-				Person.add(temp[1]);
-
-			}
+			Person.add(temp[1]);
 
 		}
-
+		
 		String[] timePerson = Person.get(0).split(",");
-
 		System.out.println();
 
 		String[][] graph = new String[10][23];
@@ -54,7 +54,7 @@ public class StatisticsControl {
 		for (int i = 0; i < graph.length; i++) {
 			System.out.print("\t\t\t");
 			for (int j = 0; j < graph[0].length; j++) {
-				
+
 				System.out.printf("%s   ", graph[i][j]);
 			}
 			System.out.println();
@@ -178,7 +178,8 @@ public class StatisticsControl {
 			while ((line = reader.readLine()) != null) {
 				String[] tmp = line.split("■");
 				list2.add(new PlaceBasic(tmp[0], tmp[1], tmp[2], tmp[3], 0,
-						Integer.parseInt(tmp[5].substring(0, line.split("■")[5].indexOf("("))), Integer.parseInt(tmp[6]), true, 0));
+						Integer.parseInt(tmp[5].substring(0, line.split("■")[5].indexOf("("))),
+						Integer.parseInt(tmp[6]), true, 0));
 
 			}
 
@@ -237,7 +238,6 @@ public class StatisticsControl {
 				System.out.println();
 			}
 
-			
 			System.out.println("\t\t\t---------------------------------------");
 			System.out.println("\t\t\t\t문화재\t맛집\t놀거리\t ");
 			System.out.println();
