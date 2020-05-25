@@ -22,12 +22,12 @@ public class ReservationDummy {
       //writer.write("[고유번호]\t[고객명]\t[예약장소명]\t[인원]\t[날짜]\t[가격]\t[적용된쿠폰]\n");
       
       for (int i=1; i<1000; i++) {
-      String name = n1[rnd.nextInt(n1.length)]
+      String id = n1[rnd.nextInt(n1.length)]
             + n2[rnd.nextInt(n2.length)]
             + n2[rnd.nextInt(n2.length)];
       String place = n3[rnd.nextInt(n3.length)];
       writer.write(i+"■");
-      writer.write(name+"■");
+      writer.write(id+"■");
       writer.write(place+"■");
       writer.write((rnd.nextInt(5)+1)+ "■");
       writer.write("2020.06."+ (rnd.nextInt(20)+10)+ "■");
