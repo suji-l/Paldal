@@ -52,7 +52,7 @@ public class MemberMypage {
 	private MemberBasic settingMemberData(MemberBasic member) { // member의 setter 값을 넣는 메소드를 생성
 
 		// 파일 경로
-		String path = "D:\\Paldal\\resource\\Member.dat";
+		String path = "resource\\Member.dat";
 
 		// 파일 생성
 		File dummy = new File(path);
@@ -94,6 +94,7 @@ public class MemberMypage {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 
 		}
 		return member;
@@ -136,7 +137,7 @@ public class MemberMypage {
 					// 캘린더 생성후 파일에 있는 String 값을 캘린더 값으로 넣어준다.
 					Calendar reviewCal = Calendar.getInstance();
 					reviewCal.set(Calendar.YEAR, Integer.parseInt(list[3].substring(0, 4)));
-					reviewCal.set(Calendar.MONTH, Integer.parseInt(list[3].substring(5, 7)));
+					reviewCal.set(Calendar.MONTH, Integer.parseInt(list[3].substring(5, 7))-1);
 					reviewCal.set(Calendar.DATE, Integer.parseInt(list[3].substring(8, 10)));
 
 					// 수정 : 리뷰 더미파일 list[6]부분에 (문화재위치) 넣어야함.
@@ -161,6 +162,7 @@ public class MemberMypage {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			
 		}
 
@@ -198,10 +200,10 @@ public class MemberMypage {
 					// 캘린더 생성후 파일에 있는 String 값을 캘린더 값으로 넣어준다.
 					Calendar cal = Calendar.getInstance();
 					cal.set(Calendar.YEAR, Integer.parseInt(list[4].substring(0, 4)));
-					cal.set(Calendar.MONTH, Integer.parseInt(list[4].substring(5, 7)));
+					cal.set(Calendar.MONTH, Integer.parseInt(list[4].substring(5, 7))-1);
 					cal.set(Calendar.DATE, Integer.parseInt(list[4].substring(8)));
 					ReservationBasic res = new ReservationBasic(list[0], list[1], list[2], Integer.parseInt(list[3]),
-							cal, Integer.parseInt(list[5].substring(0, list[5].length() - 1)), list[6]);
+							cal, Integer.parseInt(list[5].substring(0, list[5].length() - 1)), list.length == 7 ? list[6] : "");
 					System.out.printf("\t\t\t%s\t%s\t\t%tF\n", res.getReservationNum(), res.getReservationPlace(),
 							res.getReservationDate());
 
@@ -209,7 +211,7 @@ public class MemberMypage {
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -264,7 +266,6 @@ public class MemberMypage {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Sadfasdfds");
 		}
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
@@ -309,8 +310,7 @@ public class MemberMypage {
 			}
 
 		} catch (Exception e) {
-			System.out.printf("\t\t\t쿠폰번호 : \n");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			e.printStackTrace();
 		}
 
 		System.out.println("\t\t\t계속 하시려면 엔터를 입력해주세요.\n");

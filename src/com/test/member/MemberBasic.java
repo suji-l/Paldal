@@ -168,7 +168,7 @@ public class MemberBasic {
 		writer.write("■");
 		writer.write(0+"");
 		writer.write("■");
-		writer.write("");
+		writer.write("\n");
 
 		writer.close();
 

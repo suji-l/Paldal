@@ -80,7 +80,6 @@ public class StatisticsControl {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line = "";
 			while ((line = reader.readLine()) != null) {
-
 				String[] tmp = line.split("■");
 				// tmp[4] = 2020.06.20 >> 월을 추출해내기 위한 작업
 				String[] tmpDate = tmp[4].split("\\.");
@@ -98,7 +97,8 @@ public class StatisticsControl {
 					jun++;
 
 			}
-			int avg = ((mar + apr + may + jun) / 100);
+			
+			int avg = ((mar + apr + may + jun) / 10);
 
 			// 그래프 배열 선언
 			String[][] graph = new String[avg][4];
@@ -114,23 +114,23 @@ public class StatisticsControl {
 			for (int i = avg - 1; i >= 0; i--) {
 				for (int j = 0; j < 4; j++) {
 					if (j == 0) {
-						for (int k = i; k >= avg - mar / 50; k--) {
+						for (int k = i; k >= avg - mar / 5; k--) {
 							graph[k][0] = "■";
 
 						}
 
 					} else if (j == 1) {
-						for (int k = i; k >= avg - (apr / 50); k--) {
+						for (int k = i; k >= avg - (apr / 5); k--) {
 							graph[k][1] = "■";
 
 						}
 					} else if (j == 2) {
-						for (int k = i; k >= avg - may / 50; k--) {
+						for (int k = i; k >= avg - may / 5; k--) {
 							graph[k][2] = "■";
 
 						}
 					} else if (j == 3) {
-						for (int k = i; k >= avg - jun / 50; k--) {
+						for (int k = i; k >= avg - jun / 5; k--) {
 							graph[k][3] = "■";
 						}
 					}
@@ -151,12 +151,8 @@ public class StatisticsControl {
 			System.out.println("\t\t\t\t3월\t4월\t5월\t6월 ");
 			System.out.println();
 
-		} catch (
-
-		Exception e) {
-			System.out.println("StatisticsBasic.reservationStatistics()");
+		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 
 	}
@@ -243,7 +239,6 @@ public class StatisticsControl {
 			System.out.println();
 
 		} catch (Exception e) {
-			System.out.println("StatisticsBasic.palceDurationTimeStatistics()");
 			e.printStackTrace();
 		}
 

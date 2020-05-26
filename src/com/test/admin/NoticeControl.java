@@ -41,7 +41,7 @@ public class NoticeControl {
 			reader.close();
 			
 		} catch (Exception e) {
-			System.out.println("\t\t\t경로를 확인해주세요.");
+			e.printStackTrace();
 		}
 	}
 
@@ -63,7 +63,6 @@ public class NoticeControl {
 			writeDummy(notice, true);
 			System.out.println("\t\t\t공지사항 등록이 성공하였습니다. 계속하시려면 엔터를 입력해주세요");
 		} catch (Exception e) {
-			System.out.println();
 			System.out.println("\t\t\t다시 등록을 하시려면 엔터를 입력해주시기 바랍니다.");
 			scan.nextLine();
 			insertNotice();
@@ -134,7 +133,7 @@ public class NoticeControl {
 				writeDummy(list.get(i), true);
 			}
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}

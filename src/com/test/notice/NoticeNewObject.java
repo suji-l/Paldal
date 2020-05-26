@@ -110,9 +110,7 @@ public class NoticeNewObject {
          }
 
       } catch (Exception e) {
-
-         System.out.println(e);
-
+    	  e.printStackTrace();
       }
 
    }

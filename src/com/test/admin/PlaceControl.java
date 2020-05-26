@@ -34,7 +34,6 @@ public class PlaceControl {
 			reader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("경로를 확인해주세요.");
 		}
 	}
 	
@@ -74,9 +73,9 @@ public class PlaceControl {
 
 			String placeNum = makeRandomNum(); // 난수 8자리 생성
 			PlaceBasic place = new PlaceBasic(placeNum, name, description, address, 0, 0,
-					category.equals("맛집") ? 1 : 
-						category.equals("놀거리") ? 2 : 
-							category.equals("문화재") ? 3 : 0 // PlaceBasic
+					category.equals("문화재") ? 1 : 
+						category.equals("맛집") ? 2 : 
+							category.equals("놀거리") ? 3 : 0 // PlaceBasic
 																											// 객체 생성
 					, reservationPosibility.equals("가능") ? true : false, Integer.parseInt(price));
 
@@ -209,7 +208,7 @@ public class PlaceControl {
 				writeDummy(list.get(i), true);
 			}
 		} catch (IOException e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}

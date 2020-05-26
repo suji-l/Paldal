@@ -147,7 +147,7 @@ public class ReviewBasic {
          int i = 1;
             
          try {
-            writer.write("\n"+ i + "■" + memberMain.getUserId() + "■" + content + "■");
+            writer.write(i + "■" + memberMain.getUserId() + "■" + content + "■");
          
          
          Calendar cal = Calendar.getInstance();

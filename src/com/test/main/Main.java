@@ -51,7 +51,7 @@ public class Main {
 			System.out.print("\t\t\t번호 입력 : ");
 			String selectNum = scan.nextLine();
 
-			// 회원 선택 시
+			// 회원 선택 시0
 			if (selectNum.equals("1")) {
 				while (true) {
 					// 로그인

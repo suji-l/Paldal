@@ -40,7 +40,7 @@ public class Admin {
 					placeControl.deletePlace(placeNum);			
 					break;
 				} catch (Exception e) {
-					System.out.println("\t\t\t올바른 명소 번호를 입력해주세요!");
+					e.printStackTrace();
 				}
 				
 			}
@@ -67,7 +67,7 @@ public class Admin {
 					scan.nextLine();
 					break;
 				} catch (Exception e) {
-					System.out.println("\t\t\t올바른 명소 번호를 입력해주세요!");
+					e.printStackTrace();
 				}
 				
 			}
@@ -112,7 +112,7 @@ public class Admin {
 					member();	// 회원 정보 출력 후 다시 회원 목록 띄우기
 					break;
 				} catch (Exception e) {
-					System.out.println("\t\t\t회원 번호를 정확하게 입력해주세요.");
+					e.printStackTrace();
 				}
 			} else {	// 입력이 0이면 뒤로가기
 				break;
@@ -151,7 +151,7 @@ public class Admin {
 						coupon();
 						break;
 					} catch (Exception e) {
-						System.out.println("\t\t\t올바른 쿠폰 번호를 입력해주세요.");
+						e.printStackTrace();
 					}
 				}else {
 					coupon();
@@ -183,7 +183,7 @@ public class Admin {
 						coupon();
 						break;
 					} catch (Exception e) {
-						System.out.println("\t\t\t올바른 쿠폰 번호를 입력해주세요.");
+						e.printStackTrace();
 					}
 				}
 				
@@ -270,7 +270,7 @@ public class Admin {
 					break;
 				}
 			} catch (Exception e) {
-				System.out.println("\t\t\t올바른 숫자를 입력해주세요.");
+				e.printStackTrace();
 			}
 			
 			
@@ -309,8 +309,7 @@ public class Admin {
 					System.out.println("\t\t\t장소별 리뷰를 출력하였습니다. 계속하시려면 엔터를 입력해주세요.");
 					scan.nextLine();
 				} catch (Exception e) {
-					System.out.println("\t\t\t올바른 번호를 입력해주세요.");
-					System.out.println();
+					e.printStackTrace();
 				}
 				
 			} else if(reviewInput.equals("3")) {
@@ -329,7 +328,7 @@ public class Admin {
 					System.out.println("\t\t\t작성자별 리뷰를 출력하였습니다. 계속하시려면 엔터를 입력해주세요.");
 					scan.nextLine();
 				} catch (Exception e) {
-					System.out.println("\t\t\t올바른 번호를 입력해주세요.");
+					e.printStackTrace();
 				}
 				
 			} else if(!reviewInput.equals("0")) {
@@ -363,7 +362,7 @@ public class Admin {
 					System.out.println("\t\t\t계속하시려면 엔터를 입력해주세요.");
 					scan.nextLine();
 				} catch (Exception e) {
-					System.out.println("\t\t\t시간대별 방문자 에러 발생");
+					e.printStackTrace();
 				}
 			} else if (input.equals("2")) {
 				statistics.reservationStatistics("resource\\Reservation.dat");

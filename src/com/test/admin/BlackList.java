@@ -36,7 +36,7 @@ public class BlackList {
 			}
 			reader.close();
 		} catch (IOException e) {
-			System.out.println("\t\t\t오류 발생");
+			e.printStackTrace();
 		}
 	}
 	

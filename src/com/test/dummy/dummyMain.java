@@ -9,7 +9,7 @@ public class dummyMain {
 //		CouponDummy couponDummy = new CouponDummy(path);
 //		MemberDummy memberDummy = new MemberDummy(path);
 //		PlaceDummy placeDummy = new PlaceDummy(path);
-//		ReservationDummy reservationDummy = new ReservationDummy(path);
+		ReservationDummy reservationDummy = new ReservationDummy(path);
 //		ReviewDummy reviewDummy = new ReviewDummy(path);
 //		StatisticsDummy statisticsDummy = new StatisticsDummy(path);
 //		WeatherDummy weatherDummy = new WeatherDummy(path);

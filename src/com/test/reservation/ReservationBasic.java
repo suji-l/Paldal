@@ -109,10 +109,8 @@ public class ReservationBasic {
       double dicountPrice = 0;
       int price = 0;
       if (Integer.parseInt(couponNum) > 0 && Integer.parseInt(couponNum) <= possibleCouponList.size()) {
-         double dcPercetage = Double
-               .parseDouble(possibleCouponList.get(Integer.parseInt(couponNum) - 1)[4].substring(0, 2)) * 0.01;
+         double dcPercetage = Double.parseDouble(possibleCouponList.get(Integer.parseInt(couponNum) - 1)[4].substring(0, 2)) * 0.01;
          price = (place.getPrice() * Integer.parseInt(personCount));
-
          dicountPrice = price * dcPercetage;
       } else if (couponNum.equals("0")) {
          System.out.println("\t\t\t쿠폰을 사용하지 않습니다.");
@@ -122,7 +120,7 @@ public class ReservationBasic {
       }
       
       // 할인된 가격 출력
-      System.out.printf("\t\t\t 최종 가격 : %,d원\n", (int) ((price*Integer.parseInt(personCount)) - dicountPrice) );
+      System.out.printf("\t\t\t 최종 가격 : %,d원\n",  (price - (int)dicountPrice) );
       System.out.println("\t\t\t1. 예약 완료");
       System.out.println("\t\t\t0. 예약 취소");
       String selectNum = scan.nextLine();
@@ -132,10 +130,10 @@ public class ReservationBasic {
             Calendar cal = Calendar.getInstance();
             BufferedWriter writer = new BufferedWriter(
                   new FileWriter("resource\\Reservation.dat", true));
-            writer.write("\n" + makeRandomNum() + "■" + memberMain.getUserId() + "■" + // ID
+            writer.write(makeRandomNum() + "■" + memberMain.getUserId() + "■" + // ID
                   place.getName() + "■" + // 장소명
                   String.valueOf(place.getCategory()) + "■" + // 카테고리
-                  date + "■" + String.valueOf(((price*Integer.parseInt(personCount)) - dicountPrice)) + "■" + possibleCouponList.get(0)[0] + "\n"); // 사용가능한 쿠폰이 없으면 indexboundation 오류
+                  date + "■" + String.valueOf(((price) - (int)(dicountPrice))) + "원■" + possibleCouponList.get(0)[0] + "\n"); // 사용가능한 쿠폰이 없으면 indexboundation 오류
             writer.close();
             System.out.println("\t\t\t예약이 완료되었습니다.");
             System.out.println("\t\t\t계속하시려면 엔터를 눌러주세요.");
@@ -146,10 +144,11 @@ public class ReservationBasic {
             try {
                writer = new BufferedWriter(
                      new FileWriter("resource\\Reservation.dat", true));
-               writer.write("\n" + makeRandomNum() + "■" + memberMain.getUserId() + "■" + // ID
+               System.out.println(dicountPrice);
+               writer.write(makeRandomNum() + "■" + memberMain.getUserId() + "■" + // ID
                      place.getName() + "■" + // 장소명
                      String.valueOf(place.getCategory()) + "■" + // 카테고리
-                     date + "■" + String.valueOf(dicountPrice) + "■" + " " + "\n");
+                     date + "■" + String.valueOf((int)dicountPrice) + "원■" + " " + "\n");
                writer.close();
                System.out.println("\t\t\t예약이 완료되었습니다.");
                System.out.println("\t\t\t계속하시려면 엔터를 눌러주세요.");
@@ -158,6 +157,7 @@ public class ReservationBasic {
                // TODO Auto-generated catch block
                e1.printStackTrace();
             }
+            
             
          }
 

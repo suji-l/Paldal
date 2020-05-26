@@ -99,6 +99,7 @@ public class GetInfoOfPlaceMain {
 
 	private void getInfoOfPlace(PlaceBasic selectedPlace) {
 		while (true) {
+//			System.out.println("=========");
 			// 회원 케이스
 			if (loginStatus) {
 				// 체류시간 캘린더 생성
@@ -142,7 +143,6 @@ public class GetInfoOfPlaceMain {
 
 					// 장소가 예약 불가능할 경우 안내문 출력
 				} else if (selectNum.equals("1") && selectedPlace.getReservationPosibility() == false) {
-					System.out.println("왜 안뜰까용");
 					System.out.println("\t\t\t죄송합니다 예약이 불가능한 지점입니다.");
 				}
 
@@ -386,7 +386,7 @@ public class GetInfoOfPlaceMain {
 	}
 
 	public static void weather() {
-		String path = "D:\\Paldal\\resource\\weather.dat";
+		String path = "resource\\weather.dat";
 		File dummy = new File(path);
 
 		try {
@@ -396,6 +396,7 @@ public class GetInfoOfPlaceMain {
 			String line = "";
 
 			System.out.println("\t\t\t        ◆      주               간                날               씨     ◆");
+			System.out.print("\t\t\t");
 			System.out.println(
 					"  ===========================================================================================");
 			// ArrayList 명 수정 필요
@@ -415,29 +416,32 @@ public class GetInfoOfPlaceMain {
 
 			int start = cal.get(Calendar.DAY_OF_YEAR) + 2;
 			// 날짜 출력
+			System.out.print("\t\t\t");
 			for (int i = start; i < start + 7; i++) {
 				System.out.printf("%13s", weatherDataList.get(i)[0]);
 			}
 			System.out.println();
 			System.out.println(
-					"  -------------------------------------------------------------------------------------------");
+					"\t\t\t  -------------------------------------------------------------------------------------------");
 			// 날씨 출력
+			System.out.print("\t\t\t");
 			for (int i = start; i < start + 7; i++) {
-				System.out.printf("%15s          ", weatherDataList.get(i)[1]);
+				System.out.printf("%10s", weatherDataList.get(i)[1]);
 			}
 			System.out.println();
 			System.out.println(
-					"  -------------------------------------------------------------------------------------------");
+					"\t\t\t  -------------------------------------------------------------------------------------------");
 			// 온도 출력
+			System.out.print("\t\t\t");
 			for (int i = start; i < start + 7; i++) {
-				System.out.printf("%10s                ", weatherDataList.get(i)[2]);
+				System.out.printf("%10s   ", weatherDataList.get(i)[2]);
 			}
 			System.out.println();
 			System.out.println(
-					"  ===========================================================================================");
+					"\t\t\t  ===========================================================================================");
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		System.out.println();

@@ -40,7 +40,7 @@ public class ReviewControl {
 			}
 			reader.close();
 		}catch (Exception e) {
-			System.out.println("경로 확인");
+			e.printStackTrace();
 		}
 	}
 	

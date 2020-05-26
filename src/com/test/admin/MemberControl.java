@@ -121,7 +121,7 @@ public class MemberControl {
 			writer.write(memberBasic.getCoupon().replace(" ", "")+"\n");
 			writer.close();
 		} catch (Exception e) {
-		
+			e.printStackTrace();
 		}
 		
 	}

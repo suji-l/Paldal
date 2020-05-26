@@ -10,7 +10,7 @@ public class memberMain {
 	private static String userId;
 
 	public static MemberBasic login(ArrayList<MemberBasic> dummyDataMember) {
-		System.out.println(dummyDataMember.get(0).getCoupon());
+//		System.out.println(dummyDataMember.get(0).getCoupon());
 		boolean loginFlag;
 
 		System.out.print("\t\t\t ID : ");

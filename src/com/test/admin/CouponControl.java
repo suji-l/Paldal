@@ -44,7 +44,7 @@ public class CouponControl {
 			reader.close();
 			
 		} catch (Exception e) {
-			System.out.println("\t\t\t경로를 확인해주세요.");
+			e.printStackTrace();
 		}
 	}
 	
@@ -86,6 +86,10 @@ public class CouponControl {
 						Integer.parseInt(couponDateString.split("\\.")[0]), 
 						Integer.parseInt(couponDateString.split("\\.")[1]), 
 						Integer.parseInt(couponDateString.split("\\.")[2])); 
+				
+				couponTarget = couponTarget.replace("문화재", "1");
+				couponTarget = couponTarget.replace("맛집", "2");
+				couponTarget = couponTarget.replace("놀거리", "3");
 				
 				CouponBasic coupon = new CouponBasic(couponNum, couponName, couponTarget, couponDescription, couponDc, couponDate);
 				writeDummy(coupon, true);
@@ -175,7 +179,7 @@ public class CouponControl {
 				writeDummy(list.get(i), true);
 			}
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 	}
 
