@@ -16,7 +16,7 @@
         <th>세미 프로젝트</th>
         <th>개발인원</th>
         <th>팀 / 6명<br>
-          (<a href="https://github.com/kdw0725">김동욱 <a href="https://github.com/moods2">윤대웅｜</a>｜이호｜권택진｜이수지｜)
+          (<a href="https://github.com/kdw0725">김동욱 ｜<a href="https://github.com/moods2">윤대웅</a>｜이호｜권택진｜<a href="https://github.com/suji-l">이수지｜)
       </th>
     </tr>
       <tr>
