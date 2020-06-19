@@ -1,4 +1,6 @@
 ﻿# Paldal
+ ![팔달메인](https://user-images.githubusercontent.com/65211288/85103171-231ddf00-b241-11ea-9bad-72d80eb58162.jpg)
+
 
 ### 👋 Introduction
 
